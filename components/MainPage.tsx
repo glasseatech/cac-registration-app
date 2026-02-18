@@ -790,7 +790,6 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
               <div className="footer-links" style={{ marginTop: '12px' }}>
                 <a href="#faq" onClick={(e) => { e.preventDefault(); scrollTo('faq'); }}>FAQ</a>
                 <a href="#pricing" onClick={(e) => { e.preventDefault(); scrollTo('pricing'); }}>Pricing</a>
-                <a href="/admin/login">Admin Login</a>
                 <a href="#top" onClick={(e) => { e.preventDefault(); scrollTo('top'); }}>Back to top</a>
               </div>
             </div>
