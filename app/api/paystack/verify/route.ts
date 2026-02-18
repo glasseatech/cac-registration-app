@@ -118,29 +118,67 @@ export async function GET(req: NextRequest) {
             to: email,
             subject: 'Welcome! Your CAC Registration Guide Access',
             html: `
-        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2>Hello ${fullName || 'there'},</h2>
-          <p>We confirm your payment of ₦${amount} was successful.</p>
-          <p>You now have full access to the <strong>CAC Registration via SMEDAN Guide</strong>.</p>
-          
-          <div style="margin: 20px 0; padding: 15px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px;">
-            <p style="margin:0;"><strong>Your Access Link:</strong></p>
-            <a href="${accessLink}" style="display:block; margin-top:5px; color: #15803d; font-weight:bold;">${accessLink}</a>
-            <p style="font-size:12px; color: #666; margin-top:5px;">(Click to view the guide)</p>
-            <p style="font-size:12px; color: #666; margin-top:5px;"><em>If asked to sign in, use your email: ${email}</em></p>
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta charset="utf-8">
+          <style>
+            body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #1a202c; margin: 0; padding: 0; }
+            .container { max-width: 600px; margin: 20px auto; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 1px solid #e2e8f0; }
+            .header { background: linear-gradient(135deg, #0B5E2E 0%, #08401f 100%); padding: 32px 20px; text-align: center; color: white; }
+            .content { padding: 40px 30px; background: white; }
+            .footer { background: #f8fafc; padding: 24px 30px; text-align: center; font-size: 13px; color: #64748b; border-top: 1px solid #e2e8f0; }
+            .button { display: inline-block; padding: 16px 32px; background: #FFB400; color: #1a1a1a !important; text-decoration: none; border-radius: 12px; font-weight: 800; font-size: 16px; margin: 24px 0; box-shadow: 0 4px 12px rgba(255,180,0,0.25); }
+            .badge { display: inline-block; padding: 6px 12px; background: #f0fdf4; color: #166534; font-size: 11px; font-weight: 700; text-transform: uppercase; border-radius: 999px; margin-bottom: 16px; }
+            h2 { margin: 0 0 16px; font-size: 24px; color: #0f172a; letter-spacing: -0.02em; }
+            p { margin: 0 0 16px; font-size: 16px; }
+            .steps { background: #f1f5f9; border-radius: 12px; padding: 20px; margin: 24px 0; }
+            .step-item { display: flex; align-items: flex-start; margin-bottom: 12px; }
+            .step-icon { margin-right: 12px; color: #16a34a; font-weight: bold; }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <div class="header">
+              <div style="font-size: 20px; font-weight: 800; letter-spacing: -0.02em;">CAC Guide via SMEDAN</div>
+              <div style="font-size: 13px; opacity: 0.8; margin-top: 4px;">Premium Business Registration Guide</div>
+            </div>
+            <div class="content">
+              <span class="badge">Payment Confirmed</span>
+              <h2>Hello ${fullName || 'Success Seekers'},</h2>
+              <p>Your payment of <strong>₦${amount}</strong> was successful! You now have lifetime access to the registration guide.</p>
+              
+              <div style="text-align: center;">
+                <a href="${accessLink}" class="button">Access the Guide Now</a>
+              </div>
+
+              <div class="steps">
+                <p style="margin-bottom: 12px; font-size: 15px; font-weight: 700; color: #334155;">Next Steps:</p>
+                <div class="step-item">
+                  <span class="step-icon">✓</span>
+                  <span style="font-size: 14px;"><strong>Download the Checklist:</strong> Follow the step-by-step document prep.</span>
+                </div>
+                <div class="step-item">
+                  <span class="step-icon">✓</span>
+                  <span style="font-size: 14px;"><strong>Start Registration:</strong> Use the direct institucional links provided.</span>
+                </div>
+                <div class="step-item">
+                   <span class="step-icon">✓</span>
+                   <span style="font-size: 14px;"><strong>WhatsApp Support:</strong> Reply to this mail or <a href="${whatsappLink}" style="color: #16a34a; font-weight: 700;">Chat here</a> for help.</span>
+                </div>
+              </div>
+
+              <p style="font-size: 14px; color: #64748b; margin-top: 24px;">
+                <em>Login Tip:</em> If prompted for login, use your payment email: <strong>${email}</strong>
+              </p>
+            </div>
+            <div class="footer">
+              <p style="margin-bottom: 8px;">© ${new Date().getFullYear()} CAC via SMEDAN Guide. All rights reserved.</p>
+              <p>Built to help you grow your business professionally.</p>
+            </div>
           </div>
-
-          <p><strong>What you get:</strong></p>
-          <ul>
-            <li>Step-by-step registration checklist</li>
-            <li>Document preparation guide</li>
-            <li><a href="${whatsappLink}">WhatsApp Support</a> (Direct chat)</li>
-          </ul>
-
-          <p>We’re happy to help you succeed.</p>
-          <hr style="border:0; border-top:1px solid #eee; margin: 20px 0;">
-          <p style="font-size:12px; color: #888;">If you have issues, reply to this email.</p>
-        </div>
+        </body>
+        </html>
       `,
         });
 
