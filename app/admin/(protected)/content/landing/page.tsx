@@ -32,7 +32,7 @@ export default async function LandingCMSPage() {
                 title="Pricing & Promo"
                 section="pricing"
                 initialData={content['pricing']?.content || {
-                    price: 1000,
+                    price: 5000,
                     originalPrice: 3000,
                     promoActive: true,
                     countdownEnd: ""
@@ -65,7 +65,7 @@ export default async function LandingCMSPage() {
                     title: "How it works (3 simple steps)",
                     subtitle: "Everything is structured so you can move from zero to submitted registration without confusion.",
                     steps: [
-                        { title: "Enroll for ₦1000 promo access", description: "Make a secure payment via Paystack and receive your access link immediately.", kicker: "Step 1 • Enroll" },
+                        { title: "Enroll for ₦5000 promo access", description: "Make a secure payment via Paystack and receive your access link immediately.", kicker: "Step 1 • Enroll" },
                         { title: "Use the step-by-step checklist", description: "See what to prepare, what to enter, and what to double-check to avoid rejections/delays.", kicker: "Step 2 • Follow guide" },
                         { title: "Apply using the SMEDAN pathway", description: "The course explains the SMEDAN-supported process where CAC fees are covered.", kicker: "Step 3 • Register via SMEDAN" }
                     ]
@@ -128,7 +128,7 @@ export default async function LandingCMSPage() {
                     testimonials: [
                         { name: "Amaka • Lagos", text: "I didn’t know where to start. The checklist and screenshots made everything straightforward, and support replied fast.", quote: "Clear steps, no confusion.", stars: 5 },
                         { name: "Mustapha • Abuja", text: "I avoided common mistakes that cause delays. The guide is structured like an official process.", quote: "Saved me time.", stars: 5 },
-                        { name: "Ifeoma • Enugu", text: "For ₦1000 promo it’s a no-brainer. The updates also help because links and steps change.", quote: "Worth it even at ₦3000.", stars: 5 }
+                        { name: "Ifeoma • Enugu", text: "For ₦5000 promo it’s a no-brainer. The updates also help because links and steps change.", quote: "Worth it even at ₦7500.", stars: 5 }
                     ],
                     trustNoticeTitle: "Secure Payment via Paystack",
                     trustNoticeText: "Cards, bank transfer, USSD (options depend on Paystack settings)",
@@ -162,7 +162,7 @@ export default async function LandingCMSPage() {
                     subtitle: "Transparent answers to reduce hesitation and increase trust.",
                     questions: [
                         { q: "Is CAC registration really free through SMEDAN?", a: "SMEDAN-supported programs may cover CAC registration fees for eligible applicants and while program slots/funding are available. The course explains how to follow that pathway correctly." },
-                        { q: "What am I paying ₦1000 for?", a: "You’ll receive your access link by email after payment. WhatsApp support included." }
+                        { q: "What am I paying ₦5000 for?", a: "You’ll receive your access link by email after payment. WhatsApp support included." }
                     ]
                 }}
                 fields={[

@@ -106,7 +106,7 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
       // Initialize transaction on backend
       const res = await axios.post('/api/paystack/initialize', {
         email: formData.email,
-        amount: 1000, // NGN
+        amount: 5000, // NGN
         metadata: {
           custom_fields: [
             { display_name: "Full Name", variable_name: "full_name", value: formData.fullName || "—" },
@@ -122,7 +122,7 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
       const handler = window.PaystackPop.setup({
         key: process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY,
         email: formData.email,
-        amount: 1000 * 100,
+        amount: 5000 * 100,
         currency: 'NGN',
         ref: reference, // Use backend reference
         callback: function (response: any) {
@@ -163,7 +163,7 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
               <div className="logo shrink-0" aria-hidden="true"></div>
               <div className="name">
                 <strong className="text-sm md:text-base">CAC via SMEDAN Guide</strong>
-                <span className="hidden xs:block text-[10px] md:text-xs">Limited promo • ₦1000 access</span>
+                <span className="hidden xs:block text-[10px] md:text-xs">Limited promo • ₦5000 access</span>
               </div>
             </a>
 
@@ -224,10 +224,10 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
               <div className="hero-left">
                 <div className="badge-row">
                   <div className="promo-badge text-[11px] md:text-xs" role="status" aria-label="Promo price">
-                    <span className="strike"><s>₦{cmsContent.pricing?.originalPrice || 3000}</s></span>
+                    <span className="strike"><s>₦{cmsContent.pricing?.originalPrice || 7500}</s></span>
                     <span className="hidden sm:inline">cancelled</span>
                     <span style={{ opacity: .85 }}>→</span>
-                    <span className="now text-sm md:text-base">Now ₦{cmsContent.pricing?.price || 1000}</span>
+                    <span className="now text-sm md:text-base">Now ₦{cmsContent.pricing?.price || 5000}</span>
                     <span className="hidden sm:inline" style={{ opacity: .85 }}>• limited-time</span>
                   </div>
                 </div>
@@ -335,7 +335,7 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
                       </div>
                       <input className="input" type="email" id="email" name="email" placeholder="Email for access link" autoComplete="email" required value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} disabled={isPaid} />
                       <button className="btn btn-primary" id="payBtn" type="submit" disabled={loading}>
-                        {loading ? "Processing..." : (isPaid ? "Continue to Course" : "Pay ₦1000 & Get Instant Access")}
+                        {loading ? "Processing..." : (isPaid ? "Continue to Course" : "Pay ₦5000 & Get Instant Access")}
                         {!loading && (
                           <svg className="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                             <path d="M17 8V7a5 5 0 0 0-10 0v1" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
@@ -385,7 +385,7 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
 
             <div className="grid-3">
               {getList(cmsContent.how?.steps, [
-                { title: "Enroll for ₦1000 promo access", description: "Make a secure payment via Paystack and receive your access link immediately.", kicker: "Step 1 • Enroll", icon: "M4 7h16M4 12h16M4 17h10" },
+                { title: "Enroll for ₦5000 promo access", description: "Make a secure payment via Paystack and receive your access link immediately.", kicker: "Step 1 • Enroll", icon: "M4 7h16M4 12h16M4 17h10" },
                 { title: "Use the step-by-step checklist", description: "See what to prepare, what to enter, and what to double-check to avoid rejections/delays.", kicker: "Step 2 • Follow guide", icon: "M4 4h16v16H4z M7 9h10M7 13h7" },
                 { title: "Apply using the SMEDAN pathway", description: "The course explains the SMEDAN-supported process where CAC fees are covered (when eligible and slots are available).", kicker: "Step 3 • Register via SMEDAN", icon: "M12 2l9 5-9 5-9-5 9-5Z M3 10v7l9 5 9-5v-7" }
               ]).map((step: any, idx: number) => (
@@ -474,7 +474,7 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
                 {getList(cmsContent.proof?.testimonials, [
                   { name: "Amaka • Lagos", text: "I didn’t know where to start. The checklist and screenshots made everything straightforward, and support replied fast.", quote: "Clear steps, no confusion.", stars: 5 },
                   { name: "Mustapha • Abuja", text: "I avoided common mistakes that cause delays. The guide is structured like an official process.", quote: "Saved me time.", stars: 5 },
-                  { name: "Ifeoma • Enugu", text: "For ₦1000 promo it’s a no-brainer. The updates also help because links and steps change.", quote: "Worth it even at ₦3000.", stars: 5 }
+                  { name: "Ifeoma • Enugu", text: "For ₦5000 promo it’s a no-brainer. The updates also help because links and steps change.", quote: "Worth it even at ₦7500.", stars: 5 }
                 ]).map((t: any, i: number) => (
                   <div key={i} className="tcard">
                     <div className="tmeta">
@@ -522,7 +522,7 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
                       <span>{cmsContent.proof?.trustNoticeText || "Cards, bank transfer, USSD (options depend on Paystack settings)"}</span>
                     </div>
                   </div>
-                  <button className="btn btn-secondary" id="proofPayBtn" type="button" onClick={() => handlePay()}>Pay ₦1000</button>
+                  <button className="btn btn-secondary" id="proofPayBtn" type="button" onClick={() => handlePay()}>Pay ₦5000</button>
                 </div>
 
                 <div className="glass-light">
@@ -628,7 +628,7 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
 
                   <div className="price-tag">
                     <div>
-                      <div className="price">₦{cmsContent.pricing?.price || 1000} <small>/ one-time</small></div>
+                      <div className="price">₦{cmsContent.pricing?.price || 5000} <small>/ one-time</small></div>
                     </div>
                     <div className="was"><s>₦{cmsContent.pricing?.originalPrice || 3000}</s> original</div>
                   </div>
@@ -640,7 +640,7 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
 
                   <div className="price-actions">
                     <button className="btn btn-primary" id="pricingPayBtn" type="button" onClick={() => handlePay()}>
-                      {isPaid ? "Continue to Course" : "Get Access for ₦1000"}
+                      {isPaid ? "Continue to Course" : "Get Access for ₦5000"}
                       <svg className="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                         <path d="M13 5l7 7-7 7" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
                         <path d="M20 12H4" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
@@ -735,7 +735,7 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
             <div className="faq-grid">
               {getList(cmsContent.faq?.questions, [
                 { q: "Is CAC registration really free through SMEDAN?", a: "SMEDAN-supported programs may cover CAC registration fees for eligible applicants and while program slots/funding are available. The course explains how to follow that pathway correctly." },
-                { q: "What am I paying ₦1000 for?", a: "You’ll receive your access link by email after payment. WhatsApp support included." },
+                { q: "What am I paying ₦5000 for?", a: "You’ll receive your access link by email after payment. WhatsApp support included." },
                 { q: "Do you issue CAC certificates?", a: "No. CAC certificates and approvals are issued by the official institutions. We provide guidance and support to help you complete the process properly." }
               ]).map((item: any, idx: number) => (
                 <div key={idx} className="faq-item">
@@ -767,7 +767,7 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
               </p>
               <div style={{ marginTop: '12px', display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
                 <a className="pill" href="#pricing" onClick={(e) => { e.preventDefault(); scrollTo('pricing'); }} style={{ background: 'rgba(255,255,255,0.08)', borderColor: 'rgba(255,255,255,0.14)', color: 'rgba(244,247,255,0.86)', boxShadow: 'none' }}>
-                  Promo: ₦1000
+                  Promo: ₦5000
                 </a>
                 <a className="pill" href="#proof" onClick={(e) => { e.preventDefault(); scrollTo('proof'); }} style={{ background: 'rgba(255,255,255,0.08)', borderColor: 'rgba(255,255,255,0.14)', color: 'rgba(244,247,255,0.86)', boxShadow: 'none' }}>
                   Secure Paystack checkout

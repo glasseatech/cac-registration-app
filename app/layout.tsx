@@ -2,8 +2,8 @@ import type { Metadata, Viewport } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-    title: 'CAC Registration via SMEDAN (FREE) — ₦1000 Promo Course',
-    description: 'Get a step-by-step guide to register your business with CAC through SMEDAN for free. Limited-time promo: ₦1000.',
+    title: 'CAC Registration via SMEDAN (FREE) — ₦5000 Promo Course',
+    description: 'Get a step-by-step guide to register your business with CAC through SMEDAN for free. Limited-time promo: ₦5000.',
 };
 
 export const viewport: Viewport = {
