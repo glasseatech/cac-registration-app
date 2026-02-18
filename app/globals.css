@@ -1400,11 +1400,36 @@ footer {
 
     .hero-grid {
         grid-template-columns: 1fr !important;
-        gap: 0 !important;
+        gap: 20px !important;
     }
 
+    /* Show hero-right on mobile but hide countdown, keep form */
     .hero-right {
+        display: flex !important;
+    }
+
+    /* Hide countdown timer on mobile — form stays visible */
+    .countdown-title,
+    .timer {
         display: none !important;
+    }
+
+    /* Hide the second trust card on mobile (keep only the form card) */
+    .hero-right .glass-card:last-child {
+        display: none !important;
+    }
+
+    /* Compact the form card on mobile */
+    .hero-right .glass-card:first-child .card-pad {
+        padding: 16px;
+    }
+
+    .mini-form {
+        margin-top: 0;
+    }
+
+    .field-row {
+        grid-template-columns: 1fr;
     }
 
     .hero-left {
