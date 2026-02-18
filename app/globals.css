@@ -1320,23 +1320,161 @@ footer {
     }
 }
 
-@media (prefers-reduced-motion: reduce) {
-    * {
-        scroll-behavior: auto !important;
+/* Mobile-Specific Refinements (max-width: 767px) */
+@media (max-width: 767px) {
+    :root {
+        --radius: 12px;
+        --radius-lg: 18px;
     }
 
-    .pulse,
-    .toast.show {
-        animation: none !important;
+    .container {
+        width: calc(100% - 28px);
     }
 
-    .btn,
-    .glass-light,
-    .tcard,
-    .shot,
-    .timebox,
-    .feat,
-    .nav-links a {
-        transition: none !important;
+    section {
+        padding: 36px 0;
+    }
+
+    /* Hide "Secure payment via Paystack" pill on mobile */
+    .pill {
+        display: none !important;
+    }
+
+    /* Header mobile layout */
+    .nav-inner {
+        padding: 10px 0;
+        gap: 8px;
+    }
+
+    .brand {
+        min-width: 0;
+        flex: 1;
+        gap: 8px;
+    }
+
+    .logo {
+        width: 30px;
+        height: 30px;
+        flex-shrink: 0;
+        border-radius: 9px;
+    }
+
+    .brand .name strong {
+        font-size: 13px;
+    }
+
+    .brand .name span {
+        font-size: 10px;
+    }
+
+    .nav-cta {
+        min-width: 0;
+        gap: 6px;
+        flex-shrink: 0;
+    }
+
+    /* Hide login icon button on mobile — keep header minimal */
+    .btn-icon {
+        display: none !important;
+    }
+
+    /* Nav CTA primary button — compact but tappable */
+    #navPayBtn {
+        font-size: 12px;
+        padding: 8px 14px;
+        height: 36px;
+        min-height: 36px;
+        border-radius: 10px;
+        gap: 6px;
+    }
+
+    #navPayBtn .icon {
+        width: 14px;
+        height: 14px;
+    }
+
+    /* Hero mobile layout */
+    .hero {
+        padding: 28px 0 36px;
+    }
+
+    .hero-grid {
+        grid-template-columns: 1fr !important;
+        gap: 0 !important;
+    }
+
+    .hero-right {
+        display: none !important;
+    }
+
+    .hero-left {
+        padding: 0;
+        text-align: center;
+    }
+
+    .badge-row {
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+    .promo-badge {
+        font-size: 11px;
+        padding: 7px 10px;
+        gap: 6px;
+    }
+
+    .hero h1 {
+        font-size: clamp(26px, 7vw, 34px);
+        line-height: 1.15;
+        letter-spacing: -0.03em;
+        margin-bottom: 10px;
+    }
+
+    .hero p {
+        font-size: 14px;
+        line-height: 1.5;
+        margin-bottom: 0;
+        max-width: 42ch;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .hero-actions .btn {
+        width: 100%;
+        justify-content: center;
+        min-height: 48px;
+    }
+
+    .btn {
+        min-height: 44px;
+        width: 100%;
+        padding: 12px 18px;
+    }
+
+    .nav-cta .btn {
+        width: auto;
+        min-height: 38px;
+        padding: 6px 14px;
+    }
+
+    .card {
+        padding: 18px 16px;
+    }
+
+    .price {
+        font-size: 36px;
+    }
+
+    .footer-bottom {
+        text-align: center;
+        flex-direction: column;
+        gap: 6px;
     }
 }

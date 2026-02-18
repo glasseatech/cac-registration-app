@@ -157,17 +157,17 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
 
       {/* Nav */}
       <header className="nav" role="banner">
-        <div className="container">
-          <div className="nav-inner">
-            <a className="brand" href="#top" aria-label="Go to top" onClick={(e) => { e.preventDefault(); scrollTo('top'); }}>
-              <div className="logo" aria-hidden="true"></div>
+        <div className="container px-4 md:px-0">
+          <div className="nav-inner py-3 md:py-4">
+            <a className="brand min-w-0" href="#top" aria-label="Go to top" onClick={(e) => { e.preventDefault(); scrollTo('top'); }}>
+              <div className="logo shrink-0" aria-hidden="true"></div>
               <div className="name">
-                <strong>CAC via SMEDAN Guide</strong>
-                <span>Limited promo • ₦1000 access</span>
+                <strong className="text-sm md:text-base">CAC via SMEDAN Guide</strong>
+                <span className="hidden xs:block text-[10px] md:text-xs">Limited promo • ₦1000 access</span>
               </div>
             </a>
 
-            <nav className="nav-links" aria-label="Primary">
+            <nav className="nav-links hidden md:flex" aria-label="Primary">
               <a href="#how" onClick={(e) => { e.preventDefault(); scrollTo('how'); }}>How it works</a>
               <a href="#what" onClick={(e) => { e.preventDefault(); scrollTo('what'); }}>What you get</a>
               <a href="#proof" onClick={(e) => { e.preventDefault(); scrollTo('proof'); }}>Trust</a>
@@ -175,27 +175,26 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
               <a href="#faq" onClick={(e) => { e.preventDefault(); scrollTo('faq'); }}>FAQ</a>
             </nav>
 
-            <div className="nav-cta">
-              <span className="pill hide-mobile" title="Secure payment">
+            <div className="nav-cta gap-2 md:gap-3">
+              <span className="pill hidden lg:inline-flex" title="Secure payment">
                 <span className="dot" aria-hidden="true"></span>
                 Secure payment via Paystack
               </span>
 
               {!isPaid && (
                 <button
-                  className="btn-icon"
+                  className="btn-icon min-h-[40px] w-10 h-10"
                   title="Already paid? Login"
                   style={{
-                    marginRight: '12px',
                     background: 'rgba(11, 94, 46, 0.08)',
                     border: '1.5px solid #0B5E2E',
                     color: '#0B5E2E',
                     borderRadius: '8px',
-                    padding: '8px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    transition: 'all 0.2s'
+                    transition: 'all 0.2s',
+                    flexShrink: 0
                   }}
                   onClick={() => setShowLogin(true)}
                 >
@@ -220,28 +219,30 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
       <main id="main">
         {/* HERO */}
         <section className="hero" id="top">
-          <div className="container">
+          <div className="container px-4 md:px-0">
             <div className="hero-grid">
               <div className="hero-left">
                 <div className="badge-row">
-                  <div className="promo-badge" role="status" aria-label="Promo price">
+                  <div className="promo-badge text-[11px] md:text-xs" role="status" aria-label="Promo price">
                     <span className="strike"><s>₦{cmsContent.pricing?.originalPrice || 3000}</s></span>
-                    <span>cancelled</span>
+                    <span className="hidden sm:inline">cancelled</span>
                     <span style={{ opacity: .85 }}>→</span>
-                    <span className="now">Now ₦{cmsContent.pricing?.price || 1000}</span>
-                    <span style={{ opacity: .85 }}>• limited-time</span>
+                    <span className="now text-sm md:text-base">Now ₦{cmsContent.pricing?.price || 1000}</span>
+                    <span className="hidden sm:inline" style={{ opacity: .85 }}>• limited-time</span>
                   </div>
                 </div>
 
-                <h1 id="hero-title">{cmsContent.hero?.headline || "Register Your Business with CAC"}</h1>
-                <p className="hero-p">
+                <h1 id="hero-title" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.1] md:leading-[1.06] mb-3 md:mb-4">
+                  {cmsContent.hero?.headline || "Register Your Business with CAC"}
+                </h1>
+                <p className="hero-p text-sm md:text-lg mb-6 md:mb-8 opacity-90 mx-auto md:mx-0">
                   {cmsContent.hero?.subheadline || "A practical, step-by-step guide to help you register your business independently with the Corporate Affairs Commission (CAC). Save time, save money, and get it right the first time."}
                 </p>
 
-                <div className="hero-actions">
-                  <button className="btn btn-primary btn-lg" type="button" onClick={() => scrollTo('pricing')}>
+                <div className="hero-actions flex flex-col sm:flex-row gap-3 md:gap-4 items-stretch sm:items-center justify-center md:justify-start">
+                  <button className="btn btn-primary min-h-[48px] md:min-h-[60px] text-base md:text-lg px-8" type="button" onClick={() => scrollTo('pricing')}>
                     {cmsContent.hero?.ctaText || "Get the Guide Now"}
-                    <svg className="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <svg className="icon w-5 h-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                       <path d="M13 5l7 7-7 7" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
                       <path d="M20 12H4" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
                     </svg>
@@ -249,7 +250,7 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
 
                   {!isPaid && (
                     <button
-                      className="btn btn-secondary btn-lg"
+                      className="btn btn-secondary min-h-[48px] md:min-h-[60px] text-base md:text-lg px-8"
                       type="button"
                       onClick={() => setShowLogin(true)}
                       style={{ background: 'rgba(255, 255, 255, 0.1)', border: '1.5px solid white', color: 'white' }}
@@ -259,7 +260,24 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
                   )}
                 </div>
 
-                <div className="microtrust" aria-label="Trust indicators">
+                {/* Mobile Trust Strip */}
+                <div className="md:hidden mt-6 py-3 px-2 flex justify-center items-center gap-4 text-[10px] font-medium text-white/80 border-y border-white/10 uppercase tracking-wider">
+                  <span className="flex items-center gap-1.5 whitespace-nowrap">
+                    <svg className="w-3 h-3 text-gold" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                    </svg>
+                    WhatsApp support
+                  </span>
+                  <span className="flex items-center gap-1.5 whitespace-nowrap border-l border-white/20 pl-4">
+                    <svg className="w-3 h-3 text-gold" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                      <path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd" />
+                    </svg>
+                    Instant access
+                  </span>
+                </div>
+
+                <div className="microtrust hidden md:flex" aria-label="Trust indicators">
                   <span className="check">
                     <svg className="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                       <path d="M20 6L9 17l-5-5" stroke="rgba(255,255,255,0.92)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
@@ -357,7 +375,7 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
 
         {/* HOW IT WORKS */}
         <section id="how" className="anchor-pad" >
-          <div className="container">
+          <div className="container px-4 md:px-0">
             <div className="section-head">
               <div>
                 <h2>{cmsContent.how?.title || "How it works (3 simple steps)"}</h2>
@@ -392,7 +410,7 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
 
         {/* WHAT YOU GET */}
         <section id="what" className="anchor-pad" >
-          <div className="container">
+          <div className="container px-4 md:px-0">
             <div className="section-head">
               <div>
                 <h2>{cmsContent.what?.title || "What you get inside"}</h2>
@@ -443,7 +461,7 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
 
         {/* PROOF & TRUST */}
         <section id="proof" className="anchor-pad" >
-          <div className="container">
+          <div className="container px-4 md:px-0">
             <div className="section-head">
               <div>
                 <h2>{cmsContent.proof?.title || "Proof & trust"}</h2>
@@ -451,7 +469,7 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
               </div>
             </div>
 
-            <div className="proof-wrap">
+            <div className="proof-wrap grid md:grid-cols-2 gap-8 md:gap-4">
               <div className="testimonials" aria-label="Testimonials">
                 {getList(cmsContent.proof?.testimonials, [
                   { name: "Amaka • Lagos", text: "I didn’t know where to start. The checklist and screenshots made everything straightforward, and support replied fast.", quote: "Clear steps, no confusion.", stars: 5 },
@@ -531,7 +549,7 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
 
         {/* ABOUT */}
         <section id="about" className="about anchor-pad" >
-          <div className="container">
+          <div className="container px-4 md:px-0">
             <div className="section-head">
               <div>
                 <h2>About this course</h2>
@@ -582,7 +600,7 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
 
         {/* PRICING */}
         <section id="pricing" className="pricing anchor-pad" >
-          <div className="container">
+          <div className="container px-4 md:px-0">
             <div className="section-head">
               <div>
                 <h2>Limited-time promo pricing</h2>
@@ -706,7 +724,7 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
 
         {/* FAQ */}
         <section id="faq" className="anchor-pad" >
-          <div className="container">
+          <div className="container px-4 md:px-0">
             <div className="section-head">
               <div>
                 <h2>{cmsContent.faq?.title || "FAQ"}</h2>
@@ -739,9 +757,9 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
         </section>
       </main>
 
-      <footer role="contentinfo">
-        <div className="container">
-          <div className="footer-grid">
+      <footer role="contentinfo" className="py-12 md:py-16">
+        <div className="container px-4 md:px-0">
+          <div className="footer-grid grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
             <div>
               <h4>CAC via SMEDAN Guide</h4>
               <p>
