@@ -15,8 +15,9 @@ export const sendEmail = async ({ to, subject, html }: SendEmailProps) => {
     }
 
     try {
+        const fromEmail = process.env.EMAIL_FROM || 'CAC via SMEDAN Guide <onboarding@resend.dev>';
         const data = await resend.emails.send({
-            from: 'CAC Guide <onboarding@resend.dev>', // Update this with your verified domain
+            from: fromEmail,
             to,
             subject,
             html,
