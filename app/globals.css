@@ -1408,10 +1408,28 @@ footer {
         display: flex !important;
     }
 
-    /* Hide countdown timer on mobile — form stays visible */
-    .countdown-title,
+    /* Show countdown timer on mobile with refinements */
+    .countdown-title {
+        display: flex !important;
+        margin-bottom: 12px;
+    }
+
     .timer {
-        display: none !important;
+        display: grid !important;
+        gap: 6px !important;
+    }
+
+    .timebox {
+        padding: 8px 4px !important;
+    }
+
+    .timebox .num {
+        font-size: 18px !important;
+    }
+
+    .timebox .lbl {
+        font-size: 9px !important;
+        letter-spacing: 0.02em !important;
     }
 
     /* Hide the second trust card on mobile (keep only the form card) */
@@ -1425,7 +1443,9 @@ footer {
     }
 
     .mini-form {
-        margin-top: 0;
+        margin-top: 16px;
+        padding-top: 16px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .field-row {

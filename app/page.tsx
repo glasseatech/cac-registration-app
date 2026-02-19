@@ -1,19 +1,19 @@
 import MainPage from '@/components/MainPage';
 import { cookies } from 'next/headers';
 import { supabaseAdmin, createClient } from '@/lib/supabase/server';
-import { getPublicCMSContent } from '@/app/actions/cms';
+import { getFullPageContent } from '@/app/actions/cms';
+import { getSiteSections } from '@/app/actions/admin';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 export default async function Home() {
-    const supabase = await createClient(); // Server client with cookies
+    const supabase = await createClient();
     const { data: { user } } = await supabase.auth.getUser();
 
     let isPaid = false;
 
     if (user) {
-        // Check profile for paid status
         const { data: profile } = await supabaseAdmin
             .from('profiles')
             .select('paid')
@@ -22,7 +22,6 @@ export default async function Home() {
 
         if (profile?.paid) isPaid = true;
     } else {
-        // Fallback to cookie check for guest purchases (legacy support)
         const cookieStore = await cookies();
         const token = cookieStore.get('cac_access_token')?.value;
         if (token) {
@@ -35,7 +34,11 @@ export default async function Home() {
         }
     }
 
-    const cmsContent = await getPublicCMSContent('landing');
+    // Fetch all CMS content: site sections + copy strings
+    const [cmsContent, { copy }] = await Promise.all([
+        getSiteSections('landing'),
+        getFullPageContent('homepage'),
+    ]);
 
-    return <MainPage isPaid={isPaid} user={user} cmsContent={cmsContent} />;
+    return <MainPage isPaid={isPaid} user={user} cmsContent={cmsContent} copy={copy} />;
 }

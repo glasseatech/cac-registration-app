@@ -1,7 +1,8 @@
 import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
 import { supabaseAdmin, createClient } from '@/lib/supabase/server';
-import { getPublicCMSContent } from '@/app/actions/cms';
+import { getAllCopyStrings } from '@/app/actions/cms';
+import { getGuideStructure, getSiteSections } from '@/app/actions/admin';
 import GuideContent from '@/components/GuideContent';
 
 type PageProps = {
@@ -9,38 +10,43 @@ type PageProps = {
 };
 
 export default async function GuidePage({ searchParams }: PageProps) {
-    // 1. Check Auth User
     const supabase = await createClient();
     const { data: { user } } = await supabase.auth.getUser();
 
+    let isAuthorized = false;
+
     if (user) {
         const { data: profile } = await supabaseAdmin.from('profiles').select('paid').eq('id', user.id).single();
-        if (profile?.paid) {
-            const cmsContent = await getPublicCMSContent('course');
-            return <GuideContent cmsContent={cmsContent} />;
+        if (profile?.paid) isAuthorized = true;
+    }
+
+    if (!isAuthorized) {
+        const resolvedSearchParams = await searchParams;
+        const tokenFromUrl = resolvedSearchParams.token as string | undefined;
+        const cookieStore = await cookies();
+        const tokenFromCookie = cookieStore.get('cac_access_token')?.value;
+        const token = tokenFromUrl || tokenFromCookie;
+
+        if (token) {
+            const { data: legacyUser } = await supabaseAdmin
+                .from('users')
+                .select('paid')
+                .eq('access_token', token)
+                .single();
+
+            if (legacyUser?.paid) isAuthorized = true;
         }
     }
 
-    // 2. Fallback: Check Token (Legacy / URL)
-    const resolvedSearchParams = await searchParams;
-    const tokenFromUrl = resolvedSearchParams.token as string | undefined;
-    const cookieStore = await cookies();
-    const tokenFromCookie = cookieStore.get('cac_access_token')?.value;
-    const token = tokenFromUrl || tokenFromCookie;
+    if (isAuthorized) {
+        const [cmsContent, modules, copy] = await Promise.all([
+            getSiteSections('guide'),
+            getGuideStructure(),
+            getAllCopyStrings(),
+        ]);
 
-    if (token) {
-        const { data: legacyUser } = await supabaseAdmin
-            .from('users')
-            .select('paid')
-            .eq('access_token', token)
-            .single();
-
-        if (legacyUser?.paid) {
-            const cmsContent = await getPublicCMSContent('course');
-            return <GuideContent cmsContent={cmsContent} />;
-        }
+        return <GuideContent cmsContent={cmsContent} modules={modules} copy={copy} />;
     }
 
-    // 3. Not Authorized
     return redirect('/');
 }

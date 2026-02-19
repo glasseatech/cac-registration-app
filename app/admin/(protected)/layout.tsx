@@ -29,13 +29,15 @@ export default async function AdminLayout({
     }
 
     return (
-        <div className="min-h-screen bg-gray-50 flex flex-col md:flex-row">
-            {/* Sidebar */}
+        <div className="h-screen bg-gray-50 flex flex-col md:flex-row overflow-hidden">
+            {/* Sidebar remains its own size in the flex row */}
             <AdminSidebar userEmail={user.email || ''} />
 
-            {/* Main Content */}
-            <main className="flex-1 p-4 sm:p-6 md:p-8 overflow-y-auto">
-                {children}
+            {/* Main Content scrolls independently */}
+            <main className="flex-1 overflow-y-auto p-4 sm:p-6 md:p-8">
+                <div className="max-w-7xl mx-auto">
+                    {children}
+                </div>
             </main>
         </div>
     );

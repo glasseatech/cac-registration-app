@@ -1,27 +1,37 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
+import { getURL } from '@/lib/utils/helpers';
 
 export default function AdminLoginPage() {
     const [email, setEmail] = useState('');
     const [loading, setLoading] = useState(false);
     const [sent, setSent] = useState(false);
     const [error, setError] = useState('');
+    const [mounted, setMounted] = useState(false);
     const supabase = createClient();
     const router = useRouter();
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
         setError('');
 
+        const redirectTo = `${getURL()}/auth/callback?next=/admin`;
+        console.log('[AdminLogin] Attempting sign-in with redirect:', redirectTo);
+        console.log('[AdminLogin] Current Origin:', typeof window !== 'undefined' ? window.location.origin : 'server');
+
         const { error } = await supabase.auth.signInWithOtp({
             email,
             options: {
                 // Redirect back to admin dashboard after login
-                emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL!}/auth/callback?next=/admin`,
+                emailRedirectTo: redirectTo,
             },
         });
 
@@ -107,6 +117,20 @@ export default function AdminLoginPage() {
                                     {loading ? 'Sending Link...' : 'Sign in'}
                                 </button>
                             </div>
+
+                            {/* Debug Section */}
+                            {mounted && (
+                                <div className="mt-8 pt-6 border-t border-gray-100 text-[10px] space-y-2 opacity-50 hover:opacity-100 transition-opacity">
+                                    <p className="font-bold uppercase tracking-widest text-gray-400">Debug Info (Developer)</p>
+                                    <div className="bg-gray-50 p-2 rounded border border-gray-200 font-mono break-all text-gray-700">
+                                        <span className="text-gray-500">Redirecting to:</span><br />
+                                        {getURL()}/auth/callback?next=/admin
+                                    </div>
+                                    <p className="leading-tight text-gray-500">
+                                        Ensure this exact URL is in your **Supabase Auth {"->"} Redirect URLs** list.
+                                    </p>
+                                </div>
+                            )}
                         </form>
                     )}
                 </div>

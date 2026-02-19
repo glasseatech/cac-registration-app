@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
+import { getURL } from '@/lib/utils/helpers';
 
 interface LoginModalProps {
     isOpen: boolean;
@@ -23,7 +24,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
         const { error } = await supabase.auth.signInWithOtp({
             email,
             options: {
-                emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL!}/auth/callback?next=/guide`,
+                emailRedirectTo: `${getURL()}/auth/callback?next=/guide`,
             },
         });
 

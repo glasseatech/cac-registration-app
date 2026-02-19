@@ -18,13 +18,17 @@ interface MainPageProps {
   isPaid?: boolean;
   user?: User | null;
   cmsContent?: Record<string, any>;
+  copy?: Record<string, string>;
 }
 
-export default function MainPage({ isPaid = false, user, cmsContent = {} }: MainPageProps) {
+export default function MainPage({ isPaid = false, user, cmsContent = {}, copy = {} }: MainPageProps) {
   const router = useRouter();
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [promoEnded, setPromoEnded] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
+
+  // Copy string helper with fallback
+  const c = (key: string, fallback: string = '') => copy[key] || fallback;
 
   // Helper for safe list access with fallbacks
   const getList = (list: any[] | undefined, fallback: any[]) => {
@@ -88,58 +92,54 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
     }
 
     if (!formData.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      showToast("Email required", "Please enter a valid email to receive your access link.");
+      showToast(c('toast.email_required_title', "Email required"), c('toast.email_required_msg', "Please enter a valid email to receive your access link."));
       document.getElementById('email')?.focus();
       return;
     }
 
     if (!formData.phone || formData.phone.length < 10) {
-      showToast("Phone required", "Please enter a valid phone number for support.");
+      showToast(c('toast.phone_required_title', "Phone required"), c('toast.phone_required_msg', "Please enter a valid phone number for support."));
       document.getElementById('phone')?.focus();
       return;
     }
 
     setLoading(true);
-    showToast("Initializing...", "Please wait while we set up the secure checkout.");
+    showToast(c('toast.initializing_title', "Initializing..."), c('toast.initializing_msg', "Please wait while we set up the secure checkout."));
 
     try {
-      // Initialize transaction on backend
       const res = await axios.post('/api/paystack/initialize', {
         email: formData.email,
-        amount: 5000, // NGN
+        amount: cmsContent.pricing?.price || 5000,
         metadata: {
           custom_fields: [
             { display_name: "Full Name", variable_name: "full_name", value: formData.fullName || "—" },
             { display_name: "Phone", variable_name: "phone", value: formData.phone || "—" },
-            { display_name: "Product", variable_name: "product", value: "CAC Registration via SMEDAN (FREE) — Step-by-step Course" }
+            { display_name: "Product", variable_name: "product", value: c('pricing.plan_title', "CAC Registration via SMEDAN (FREE) — Step-by-step Course") }
           ]
         }
       });
 
       const { authorization_url, access_code, reference } = res.data.data;
 
-      // Open Paystack Popup
       const handler = window.PaystackPop.setup({
         key: process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY,
         email: formData.email,
-        amount: 5000 * 100,
+        amount: (cmsContent.pricing?.price || 5000) * 100,
         currency: 'NGN',
-        ref: reference, // Use backend reference
+        ref: reference,
         callback: function (response: any) {
-          showToast("Processing...", "Verifying payment...");
-          // Redirect to verify route or handle close
-          // We can let the backend verify via webhook, but for immediate feedback:
+          showToast(c('toast.processing_title', "Processing..."), c('toast.processing_msg', "Verifying payment..."));
           window.location.href = `/api/paystack/verify?reference=${response.reference}`;
         },
         onClose: function () {
-          showToast("Checkout closed", "You can resume anytime.");
+          showToast(c('toast.closed_title', "Checkout closed"), c('toast.closed_msg', "You can resume anytime."));
           setLoading(false);
         }
       });
       handler.openIframe();
     } catch (err) {
       console.error(err);
-      showToast("Error", "Could not initialize payment. Please try again.");
+      showToast(c('toast.error_title', "Error"), c('toast.error_msg', "Could not initialize payment. Please try again."));
       setLoading(false);
     }
   };
@@ -150,10 +150,14 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
+  // Derived values
+  const price = cmsContent.pricing?.price || 5000;
+  const originalPrice = cmsContent.pricing?.originalPrice || 7500;
+
   return (
     <>
       {/* Skip Link */}
-      <a className="skip-link" href="#main">Skip to content</a>
+      <a className="skip-link" href="#main">{c('a11y.skip_to_content', 'Skip to content')}</a>
 
       {/* Nav */}
       <header className="nav" role="banner">
@@ -162,29 +166,29 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
             <a className="brand min-w-0" href="#top" aria-label="Go to top" onClick={(e) => { e.preventDefault(); scrollTo('top'); }}>
               <div className="logo shrink-0" aria-hidden="true"></div>
               <div className="name">
-                <strong className="text-sm md:text-base">CAC via SMEDAN Guide</strong>
-                <span className="hidden xs:block text-[10px] md:text-xs">Limited promo • ₦5000 access</span>
+                <strong className="text-sm md:text-base">{c('navbar.brand_name', 'CAC via SMEDAN Guide')}</strong>
+                <span className="hidden xs:block text-[10px] md:text-xs">{c('navbar.tagline', `Limited promo • ₦${price} access`)}</span>
               </div>
             </a>
 
             <nav className="nav-links hidden md:flex" aria-label="Primary">
-              <a href="#how" onClick={(e) => { e.preventDefault(); scrollTo('how'); }}>How it works</a>
-              <a href="#what" onClick={(e) => { e.preventDefault(); scrollTo('what'); }}>What you get</a>
-              <a href="#proof" onClick={(e) => { e.preventDefault(); scrollTo('proof'); }}>Trust</a>
-              <a href="#pricing" onClick={(e) => { e.preventDefault(); scrollTo('pricing'); }}>Pricing</a>
-              <a href="#faq" onClick={(e) => { e.preventDefault(); scrollTo('faq'); }}>FAQ</a>
+              <a href="#how" onClick={(e) => { e.preventDefault(); scrollTo('how'); }}>{c('navbar.link_how', 'How it works')}</a>
+              <a href="#what" onClick={(e) => { e.preventDefault(); scrollTo('what'); }}>{c('navbar.link_what', 'What you get')}</a>
+              <a href="#proof" onClick={(e) => { e.preventDefault(); scrollTo('proof'); }}>{c('navbar.link_trust', 'Trust')}</a>
+              <a href="#pricing" onClick={(e) => { e.preventDefault(); scrollTo('pricing'); }}>{c('navbar.link_pricing', 'Pricing')}</a>
+              <a href="#faq" onClick={(e) => { e.preventDefault(); scrollTo('faq'); }}>{c('navbar.link_faq', 'FAQ')}</a>
             </nav>
 
             <div className="nav-cta gap-2 md:gap-3">
               <span className="pill hidden lg:inline-flex" title="Secure payment">
                 <span className="dot" aria-hidden="true"></span>
-                Secure payment via Paystack
+                {c('navbar.pill_secure', 'Secure payment via Paystack')}
               </span>
 
               {!isPaid && (
                 <button
                   className="btn-icon min-h-[40px] w-10 h-10"
-                  title="Already paid? Login"
+                  title={c('navbar.btn_login_title', 'Already paid? Login')}
                   style={{
                     background: 'rgba(11, 94, 46, 0.08)',
                     border: '1.5px solid #0B5E2E',
@@ -205,7 +209,7 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
               )}
 
               <button className="btn btn-primary" id="navPayBtn" type="button" aria-label="Pay and get access" onClick={() => handlePay()}>
-                {isPaid ? "Course Access" : "Get Access"}
+                {isPaid ? c('navbar.btn_course_access', 'Course Access') : c('navbar.btn_get_access', 'Get Access')}
                 <svg className="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <path d="M13 5l7 7-7 7" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
                   <path d="M20 12H4" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
@@ -224,11 +228,11 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
               <div className="hero-left">
                 <div className="badge-row">
                   <div className="promo-badge text-[11px] md:text-xs" role="status" aria-label="Promo price">
-                    <span className="strike"><s>₦{cmsContent.pricing?.originalPrice || 7500}</s></span>
-                    <span className="hidden sm:inline">cancelled</span>
+                    <span className="strike"><s>₦{originalPrice}</s></span>
+                    <span className="hidden sm:inline">{c('hero.badge_cancelled', 'cancelled')}</span>
                     <span style={{ opacity: .85 }}>→</span>
-                    <span className="now text-sm md:text-base">Now ₦{cmsContent.pricing?.price || 5000}</span>
-                    <span className="hidden sm:inline" style={{ opacity: .85 }}>• limited-time</span>
+                    <span className="now text-sm md:text-base">{c('hero.badge_now', 'Now')} ₦{price}</span>
+                    <span className="hidden sm:inline" style={{ opacity: .85 }}>• {c('hero.badge_limited', 'limited-time')}</span>
                   </div>
                 </div>
 
@@ -255,7 +259,7 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
                       onClick={() => setShowLogin(true)}
                       style={{ background: 'rgba(255, 255, 255, 0.1)', border: '1.5px solid white', color: 'white' }}
                     >
-                      Already paid? Login
+                      {c('hero.btn_already_paid', 'Already paid? Login')}
                     </button>
                   )}
                 </div>
@@ -266,14 +270,14 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
                     <svg className="w-3 h-3 text-gold" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                     </svg>
-                    WhatsApp support
+                    {c('hero.mobile_whatsapp', 'WhatsApp support')}
                   </span>
                   <span className="flex items-center gap-1.5 whitespace-nowrap border-l border-white/20 pl-4">
                     <svg className="w-3 h-3 text-gold" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
                       <path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd" />
                     </svg>
-                    Instant access
+                    {c('hero.mobile_instant', 'Instant access')}
                   </span>
                 </div>
 
@@ -282,21 +286,21 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
                     <svg className="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                       <path d="M20 6L9 17l-5-5" stroke="rgba(255,255,255,0.92)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
-                    Clear steps (Beginner-friendly)
+                    {c('hero.trust_clear_steps', 'Clear steps (Beginner-friendly)')}
                   </span>
                   <span className="check">
                     <svg className="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                       <path d="M12 2l7 4v6c0 5-3 9-7 10C8 21 5 17 5 12V6l7-4Z" stroke="rgba(255,255,255,0.92)" strokeWidth="2.0" strokeLinejoin="round" />
                       <path d="M9.5 12l1.8 1.8L15.8 9" stroke="rgba(255,255,255,0.92)" strokeWidth="2.0" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
-                    Paystack-secured payment
+                    {c('hero.trust_paystack', 'Paystack-secured payment')}
                   </span>
                   <span className="check">
                     <svg className="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                       <path d="M12 8v5l3 2" stroke="rgba(255,255,255,0.92)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
                       <path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke="rgba(255,255,255,0.92)" strokeWidth="2.0" />
                     </svg>
-                    Lifetime access + updates
+                    {c('hero.trust_lifetime', 'Lifetime access + updates')}
                   </span>
                 </div>
               </div>
@@ -305,37 +309,37 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
                 <div className="glass-card">
                   <div className="card-pad">
                     <div className="countdown-title">
-                      <strong>Promo ends soon</strong>
-                      <span id="promoEndsLabel" aria-live="polite">{promoEnded ? "Promo ended" : "Limited-time"}</span>
+                      <strong>{c('hero.promo_ends_soon', 'Promo ends soon')}</strong>
+                      <span id="promoEndsLabel" aria-live="polite">{promoEnded ? c('hero.promo_ended', 'Promo ended') : c('hero.promo_limited', 'Limited-time')}</span>
                     </div>
 
                     <div className="timer" role="timer" aria-label="Countdown timer">
                       <div className="timebox">
                         <div className="num" id="dd">{String(timeLeft.days).padStart(2, '0')}</div>
-                        <div className="lbl">Days</div>
+                        <div className="lbl">{c('timer.days', 'Days')}</div>
                       </div>
                       <div className="timebox">
                         <div className="num" id="hh">{String(timeLeft.hours).padStart(2, '0')}</div>
-                        <div className="lbl">Hours</div>
+                        <div className="lbl">{c('timer.hours', 'Hours')}</div>
                       </div>
                       <div className="timebox">
                         <div className="num" id="mm">{String(timeLeft.minutes).padStart(2, '0')}</div>
-                        <div className="lbl">Minutes</div>
+                        <div className="lbl">{c('timer.minutes', 'Minutes')}</div>
                       </div>
                       <div className="timebox">
                         <div className="num" id="ss">{String(timeLeft.seconds).padStart(2, '0')}</div>
-                        <div className="lbl">Seconds</div>
+                        <div className="lbl">{c('timer.seconds', 'Seconds')}</div>
                       </div>
                     </div>
 
                     <form className="mini-form" id="payForm" onSubmit={handlePay}>
                       <div className="field-row">
-                        <input className="input" type="text" id="fullName" name="fullName" placeholder="Full name" autoComplete="name" value={formData.fullName} onChange={e => setFormData({ ...formData, fullName: e.target.value })} />
-                        <input className="input" type="tel" id="phone" name="phone" placeholder="Phone (WhatsApp)" autoComplete="tel" value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })} />
+                        <input className="input" type="text" id="fullName" name="fullName" placeholder={c('hero.form_fullname', 'Full name')} autoComplete="name" value={formData.fullName} onChange={e => setFormData({ ...formData, fullName: e.target.value })} />
+                        <input className="input" type="tel" id="phone" name="phone" placeholder={c('hero.form_phone', 'Phone (WhatsApp)')} autoComplete="tel" value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })} />
                       </div>
-                      <input className="input" type="email" id="email" name="email" placeholder="Email for access link" autoComplete="email" required value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} disabled={isPaid} />
+                      <input className="input" type="email" id="email" name="email" placeholder={c('hero.form_email', 'Email for access link')} autoComplete="email" required value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} disabled={isPaid} />
                       <button className="btn btn-primary" id="payBtn" type="submit" disabled={loading}>
-                        {loading ? "Processing..." : (isPaid ? "Continue to Course" : "Pay ₦5000 & Get Instant Access")}
+                        {loading ? c('hero.btn_processing', 'Processing...') : (isPaid ? c('hero.btn_continue', 'Continue to Course') : c('hero.btn_pay', `Pay ₦${price} & Get Instant Access`))}
                         {!loading && (
                           <svg className="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                             <path d="M17 8V7a5 5 0 0 0-10 0v1" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
@@ -344,7 +348,7 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
                         )}
                       </button>
                       <p className="hero-note">
-                        You’ll receive your access link by email after payment. WhatsApp support included.
+                        {c('hero.note', "You'll receive your access link by email after payment. WhatsApp support included.")}
                       </p>
                     </form>
                   </div>
@@ -360,9 +364,9 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
                         </svg>
                       </div>
                       <div>
-                        <strong style={{ display: 'block', letterSpacing: '-0.02em', color: 'rgba(255,255,255,0.95)' }}>Trust-first, Nigerian institutional tone</strong>
+                        <strong style={{ display: 'block', letterSpacing: '-0.02em', color: 'rgba(255,255,255,0.95)' }}>{c('hero.glass_card_title', 'Trust-first, Nigerian institutional tone')}</strong>
                         <span style={{ display: 'block', marginTop: '4px', fontSize: '13px', color: 'rgba(244,247,255,0.80)' }}>
-                          This is a guidance course to help you navigate the SMEDAN route clearly. Not a government office.
+                          {c('hero.glass_card_text', 'This is a guidance course to help you navigate the SMEDAN route clearly. Not a government office.')}
                         </span>
                       </div>
                     </div>
@@ -422,7 +426,7 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
               <div>
                 <div className="feature-list">
                   {getList(cmsContent.what?.features, [
-                    { title: "Step-by-step guide page", description: "Simple flow, screenshots, and checklists so you don’t miss anything." },
+                    { title: "Step-by-step guide page", description: "Simple flow, screenshots, and checklists so you don't miss anything." },
                     { title: "WhatsApp support", description: "Ask questions and get guided on common blockers and corrections." },
                     { title: "Lifetime access", description: "Revisit the guide anytime — no expiring login drama." },
                     { title: "Updated instructions", description: "When forms/links change, the guide is refreshed so you stay current." }
@@ -449,9 +453,10 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
                     {cmsContent.what?.sideCardText || "The layout mirrors the way institutional processes work: requirements → steps → submission → follow-up. No noise, no hype."}
                   </p>
                   <div className="chips" aria-label="Key assurances">
-                    {getList(cmsContent.what?.chips, ["Beginner-friendly", "Clear checklists", "Fast support", "Secure checkout"]).map((chip: string) => (
-                      <span key={chip} className="chip">{chip}</span>
-                    ))}
+                    {getList(cmsContent.what?.chips, ["Beginner-friendly", "Clear checklists", "Fast support", "Secure checkout"]).map((chip: any) => {
+                      const label = typeof chip === 'string' ? chip : chip?.label || '';
+                      return <span key={label} className="chip">{label}</span>;
+                    })}
                   </div>
                 </div>
               </div>
@@ -472,9 +477,9 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
             <div className="proof-wrap grid md:grid-cols-2 gap-8 md:gap-4">
               <div className="testimonials" aria-label="Testimonials">
                 {getList(cmsContent.proof?.testimonials, [
-                  { name: "Amaka • Lagos", text: "I didn’t know where to start. The checklist and screenshots made everything straightforward, and support replied fast.", quote: "Clear steps, no confusion.", stars: 5 },
+                  { name: "Amaka • Lagos", text: "I didn't know where to start. The checklist and screenshots made everything straightforward, and support replied fast.", quote: "Clear steps, no confusion.", stars: 5 },
                   { name: "Mustapha • Abuja", text: "I avoided common mistakes that cause delays. The guide is structured like an official process.", quote: "Saved me time.", stars: 5 },
-                  { name: "Ifeoma • Enugu", text: "For ₦5000 promo it’s a no-brainer. The updates also help because links and steps change.", quote: "Worth it even at ₦7500.", stars: 5 }
+                  { name: "Ifeoma • Enugu", text: "For ₦5000 promo it's a no-brainer. The updates also help because links and steps change.", quote: "Worth it even at ₦7500.", stars: 5 }
                 ]).map((t: any, i: number) => (
                   <div key={i} className="tcard">
                     <div className="tmeta">
@@ -482,7 +487,7 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
                         <div className="avatar" aria-hidden="true">{t.name.charAt(0)}</div>
                         <div>
                           <strong>{t.name}</strong>
-                          <span>“{t.quote}”</span>
+                          <span>"{t.quote}"</span>
                         </div>
                       </div>
                       <div className="stars" aria-label={`${t.stars} star rating`}>{"★".repeat(t.stars)}</div>
@@ -496,14 +501,14 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
                 <div className="shots" aria-label="Certificate / proof screenshots placeholders">
                   <div className="shot" role="img" aria-label="Placeholder for certificate screenshot 1">
                     <div className="ph">
-                      <strong>Certificate / Proof Screenshot</strong>
-                      <span>Drop an image here (e.g., CAC certificate sample / confirmation screenshots)</span>
+                      <strong>{c('proof.screenshot1_title', 'Certificate / Proof Screenshot')}</strong>
+                      <span>{c('proof.screenshot1_desc', 'Drop an image here (e.g., CAC certificate sample / confirmation screenshots)')}</span>
                     </div>
                   </div>
                   <div className="shot" role="img" aria-label="Placeholder for certificate screenshot 2">
                     <div className="ph">
-                      <strong>Certificate / Proof Screenshot</strong>
-                      <span>Use real customer outcomes for maximum trust</span>
+                      <strong>{c('proof.screenshot2_title', 'Certificate / Proof Screenshot')}</strong>
+                      <span>{c('proof.screenshot2_desc', 'Use real customer outcomes for maximum trust')}</span>
                     </div>
                   </div>
                 </div>
@@ -522,7 +527,7 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
                       <span>{cmsContent.proof?.trustNoticeText || "Cards, bank transfer, USSD (options depend on Paystack settings)"}</span>
                     </div>
                   </div>
-                  <button className="btn btn-secondary" id="proofPayBtn" type="button" onClick={() => handlePay()}>Pay ₦5000</button>
+                  <button className="btn btn-secondary" id="proofPayBtn" type="button" onClick={() => handlePay()}>{c('proof.btn_pay', `Pay ₦${price}`)}</button>
                 </div>
 
                 <div className="glass-light">
@@ -534,9 +539,9 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
                           <path d="M4 12a8 8 0 1 0 16 0 8 8 0 0 0-16 0Z" stroke="rgba(15,28,46,0.82)" strokeWidth="2.0" />
                         </svg>
                       </span>
-                      Credibility
+                      {c('proof.credibility_kicker', 'Credibility')}
                     </div>
-                    <h3>Clear boundaries (trust-building)</h3>
+                    <h3>{c('proof.credibility_title', 'Clear boundaries (trust-building)')}</h3>
                     <p>
                       {cmsContent.proof?.disclaimer || "This is an educational guide + support to help you complete your SMEDAN/CAC process correctly. We are not a government agency and do not issue certificates ourselves."}
                     </p>
@@ -552,48 +557,31 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
           <div className="container px-4 md:px-0">
             <div className="section-head">
               <div>
-                <h2>About this course</h2>
-                <p>Built from real registration experiences and common issues Nigerian business owners face.</p>
+                <h2>{cmsContent.about?.title || c('about.title', 'About this course')}</h2>
+                <p>{cmsContent.about?.subtitle || c('about.subtitle', 'Built from real registration experiences and common issues Nigerian business owners face.')}</p>
               </div>
             </div>
 
             <div className="about-grid">
-              <div className="glass-light">
-                <div className="card">
-                  <div className="kicker">
-                    <span className="kicon" aria-hidden="true">
-                      <svg className="icon" viewBox="0 0 24 24" fill="none">
-                        <path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z" stroke="rgba(15,28,46,0.82)" strokeWidth="2.0" />
-                        <path d="M3 22a9 9 0 0 1 18 0" stroke="rgba(15,28,46,0.82)" strokeWidth="2.0" strokeLinecap="round" />
-                      </svg>
-                    </span>
-                    Experience-driven
+              {getList(cmsContent.about?.cards, [
+                { kicker: c('about.card1_kicker', 'Experience-driven'), title: c('about.card1_title', 'Practical, not theoretical'), text: c('about.card1_text', 'The guide focuses on what you actually need: requirements, exact steps, and how to avoid common mistakes that lead to delays or rework.') },
+                { kicker: c('about.card2_kicker', 'Support included'), title: c('about.card2_title', 'Guidance + WhatsApp support'), text: c('about.card2_text', "You're not left alone. If you get stuck on a step, you can ask for help and get direction to proceed correctly.") }
+              ]).map((card: any, idx: number) => (
+                <div key={idx} className="glass-light">
+                  <div className="card">
+                    <div className="kicker">
+                      <span className="kicon" aria-hidden="true">
+                        <svg className="icon" viewBox="0 0 24 24" fill="none">
+                          <path d={idx === 0 ? "M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z M3 22a9 9 0 0 1 18 0" : "M7 7h10v10H7z M4 10V6a2 2 0 0 1 2-2h4 M20 14v4a2 2 0 0 1-2 2h-4"} stroke="rgba(15,28,46,0.82)" strokeWidth="2.0" strokeLinecap="round" />
+                        </svg>
+                      </span>
+                      {card.kicker}
+                    </div>
+                    <h3>{card.title}</h3>
+                    <p>{card.text}</p>
                   </div>
-                  <h3>Practical, not theoretical</h3>
-                  <p>
-                    The guide focuses on what you actually need: requirements, exact steps, and how to avoid common mistakes that lead to delays or rework.
-                  </p>
                 </div>
-              </div>
-
-              <div className="glass-light">
-                <div className="card">
-                  <div className="kicker">
-                    <span className="kicon" aria-hidden="true">
-                      <svg className="icon" viewBox="0 0 24 24" fill="none">
-                        <path d="M7 7h10v10H7z" stroke="rgba(15,28,46,0.82)" strokeWidth="2.2" />
-                        <path d="M4 10V6a2 2 0 0 1 2-2h4" stroke="rgba(15,28,46,0.82)" strokeWidth="2.2" strokeLinecap="round" />
-                        <path d="M20 14v4a2 2 0 0 1-2 2h-4" stroke="rgba(15,28,46,0.82)" strokeWidth="2.2" strokeLinecap="round" />
-                      </svg>
-                    </span>
-                    Support included
-                  </div>
-                  <h3>Guidance + WhatsApp support</h3>
-                  <p>
-                    You’re not left alone. If you get stuck on a step, you can ask for help and get direction to proceed correctly.
-                  </p>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </section>
@@ -603,8 +591,8 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
           <div className="container px-4 md:px-0">
             <div className="section-head">
               <div>
-                <h2>Limited-time promo pricing</h2>
-                <p>Professional guidance at a promotional price — designed to help you act quickly without pressure tactics.</p>
+                <h2>{c('pricing.title', 'Limited-time promo pricing')}</h2>
+                <p>{c('pricing.subtitle', 'Professional guidance at a promotional price — designed to help you act quickly without pressure tactics.')}</p>
               </div>
             </div>
 
@@ -618,29 +606,29 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
                         <path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke="rgba(15,28,46,0.88)" strokeWidth="2.0" />
                       </svg>
                     </span>
-                    Promo active
+                    {c('pricing.kicker', 'Promo active')}
                   </div>
 
-                  <h3 style={{ margin: 0, fontSize: '18px', letterSpacing: '-0.02em', fontWeight: 900 }}>CAC Registration via SMEDAN (FREE) — Course Access</h3>
+                  <h3 style={{ margin: 0, fontSize: '18px', letterSpacing: '-0.02em', fontWeight: 900 }}>{cmsContent.pricing?.planTitle || 'CAC Registration via SMEDAN (FREE) — Course Access'}</h3>
                   <p className="muted" style={{ margin: '8px 0 0', fontSize: '14px' }}>
-                    Includes step-by-step guide, updates, and WhatsApp support.
+                    {cmsContent.pricing?.planDesc || 'Includes step-by-step guide, updates, and WhatsApp support.'}
                   </p>
 
                   <div className="price-tag">
                     <div>
-                      <div className="price">₦{cmsContent.pricing?.price || 5000} <small>/ one-time</small></div>
+                      <div className="price">₦{price} <small>{c('pricing.one_time', '/ one-time')}</small></div>
                     </div>
-                    <div className="was"><s>₦{cmsContent.pricing?.originalPrice || 3000}</s> original</div>
+                    <div className="was"><s>₦{originalPrice}</s> {c('pricing.original_label', 'original')}</div>
                   </div>
 
                   <div className="limited" aria-live="polite">
                     <span className="pulse" aria-hidden="true"></span>
-                    <span><strong>Limited-time offer</strong> — promo ends when countdown hits zero (or slots close).</span>
+                    <span><strong>{c('pricing.limited_offer', 'Limited-time offer')}</strong> {c('pricing.limited_desc', '— promo ends when countdown hits zero (or slots close).')}</span>
                   </div>
 
                   <div className="price-actions">
                     <button className="btn btn-primary" id="pricingPayBtn" type="button" onClick={() => handlePay()}>
-                      {isPaid ? "Continue to Course" : "Get Access for ₦5000"}
+                      {isPaid ? c('pricing.btn_continue', 'Continue to Course') : c('pricing.btn_get_access', `Get Access for ₦${price}`)}
                       <svg className="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                         <path d="M13 5l7 7-7 7" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
                         <path d="M20 12H4" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
@@ -652,15 +640,15 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
                         onClick={() => setShowLogin(true)}
                         style={{ background: 'white', border: '1.5px solid #0B5E2E', color: '#0B5E2E', fontWeight: 600 }}
                       >
-                        Already paid? Log in here
+                        {c('pricing.btn_login', 'Already paid? Log in here')}
                       </button>
                     )}
-                    <a className="btn btn-secondary" href="#faq" onClick={(e) => { e.preventDefault(); scrollTo('faq'); }}>Read FAQs</a>
+                    <a className="btn btn-secondary" href="#faq" onClick={(e) => { e.preventDefault(); scrollTo('faq'); }}>{c('pricing.btn_faq', 'Read FAQs')}</a>
                   </div>
 
                   <div className="divider"></div>
                   <p className="subtle" style={{ margin: 0 }}>
-                    Support: {cmsContent.contact?.email || 'support@example.com'} • <a href={`https://wa.me/${cmsContent.contact?.whatsapp || '2348000000000'}`}>WhatsApp</a>
+                    Support: {cmsContent.contact?.email || c('footer.email', 'crowglogroup@gmail.com')} • <a href={`https://wa.me/${cmsContent.contact?.whatsapp || c('footer.whatsapp_link', '2348000000000')}`}>WhatsApp</a>
                   </p>
                 </div>
               </div>
@@ -674,47 +662,31 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
                         <path d="M9.5 12l1.8 1.8L15.8 9" stroke="rgba(15,28,46,0.82)" strokeWidth="2.0" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </span>
-                    What makes this high-converting
+                    {c('pricing.conversion_kicker', 'What makes this high-converting')}
                   </div>
-                  <h3>Everything needed to reduce uncertainty</h3>
+                  <h3>{c('pricing.conversion_title', 'Everything needed to reduce uncertainty')}</h3>
                   <p>
-                    Buyers want clarity and trust. This page gives them both: a simple process, transparent disclaimers, secure Paystack checkout, and proof placeholders for your real screenshots.
+                    {c('pricing.conversion_text', 'Buyers want clarity and trust. This page gives them both: a simple process, transparent disclaimers, secure Paystack checkout, and proof placeholders for your real screenshots.')}
                   </p>
                   <div className="divider"></div>
                   <div className="feature-list" style={{ marginTop: 0 }}>
-                    <div className="feat" style={{ boxShadow: 'none' }}>
-                      <div className="tick" aria-hidden="true">
-                        <svg className="icon" viewBox="0 0 24 24" fill="none">
-                          <path d="M20 6L9 17l-5-5" stroke="rgba(30,132,73,0.95)" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
+                    {[
+                      { title: c('pricing.feat1_title', 'Professional tone (not spammy)'), desc: c('pricing.feat1_desc', 'Urgency shown via countdown and promo badge only.') },
+                      { title: c('pricing.feat2_title', 'Clear "what this is / isn\'t"'), desc: c('pricing.feat2_desc', 'Builds trust and reduces refunds/complaints.') },
+                      { title: c('pricing.feat3_title', 'Mobile-first layout'), desc: c('pricing.feat3_desc', 'Fast scanning, large CTA, sticky nav CTA.') },
+                    ].map((feat, fi) => (
+                      <div key={fi} className="feat" style={{ boxShadow: 'none' }}>
+                        <div className="tick" aria-hidden="true">
+                          <svg className="icon" viewBox="0 0 24 24" fill="none">
+                            <path d="M20 6L9 17l-5-5" stroke="rgba(30,132,73,0.95)" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                        </div>
+                        <div>
+                          <strong>{feat.title}</strong>
+                          <span>{feat.desc}</span>
+                        </div>
                       </div>
-                      <div>
-                        <strong>Professional tone (not spammy)</strong>
-                        <span>Urgency shown via countdown and promo badge only.</span>
-                      </div>
-                    </div>
-                    <div className="feat" style={{ boxShadow: 'none' }}>
-                      <div className="tick" aria-hidden="true">
-                        <svg className="icon" viewBox="0 0 24 24" fill="none">
-                          <path d="M20 6L9 17l-5-5" stroke="rgba(30,132,73,0.95)" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                      </div>
-                      <div>
-                        <strong>Clear “what this is / isn’t”</strong>
-                        <span>Builds trust and reduces refunds/complaints.</span>
-                      </div>
-                    </div>
-                    <div className="feat" style={{ boxShadow: 'none' }}>
-                      <div className="tick" aria-hidden="true">
-                        <svg className="icon" viewBox="0 0 24 24" fill="none">
-                          <path d="M20 6L9 17l-5-5" stroke="rgba(30,132,73,0.95)" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                      </div>
-                      <div>
-                        <strong>Mobile-first layout</strong>
-                        <span>Fast scanning, large CTA, sticky nav CTA.</span>
-                      </div>
-                    </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -735,7 +707,7 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
             <div className="faq-grid">
               {getList(cmsContent.faq?.questions, [
                 { q: "Is CAC registration really free through SMEDAN?", a: "SMEDAN-supported programs may cover CAC registration fees for eligible applicants and while program slots/funding are available. The course explains how to follow that pathway correctly." },
-                { q: "What am I paying ₦5000 for?", a: "You’ll receive your access link by email after payment. WhatsApp support included." },
+                { q: "What am I paying ₦5000 for?", a: "You'll receive your access link by email after payment. WhatsApp support included." },
                 { q: "Do you issue CAC certificates?", a: "No. CAC certificates and approvals are issued by the official institutions. We provide guidance and support to help you complete the process properly." }
               ]).map((item: any, idx: number) => (
                 <div key={idx} className="faq-item">
@@ -761,43 +733,43 @@ export default function MainPage({ isPaid = false, user, cmsContent = {} }: Main
         <div className="container px-4 md:px-0">
           <div className="footer-grid grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
             <div>
-              <h4>CAC via SMEDAN Guide</h4>
+              <h4>{c('footer.brand_title', 'CAC via SMEDAN Guide')}</h4>
               <p>
-                A practical course to help Nigerian entrepreneurs navigate the SMEDAN-supported CAC registration pathway with clarity and confidence.
+                {c('footer.brand_desc', 'A practical course to help Nigerian entrepreneurs navigate the SMEDAN-supported CAC registration pathway with clarity and confidence.')}
               </p>
               <div style={{ marginTop: '12px', display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
                 <a className="pill" href="#pricing" onClick={(e) => { e.preventDefault(); scrollTo('pricing'); }} style={{ background: 'rgba(255,255,255,0.08)', borderColor: 'rgba(255,255,255,0.14)', color: 'rgba(244,247,255,0.86)', boxShadow: 'none' }}>
-                  Promo: ₦5000
+                  {c('footer.pill_promo', `Promo: ₦${price}`)}
                 </a>
                 <a className="pill" href="#proof" onClick={(e) => { e.preventDefault(); scrollTo('proof'); }} style={{ background: 'rgba(255,255,255,0.08)', borderColor: 'rgba(255,255,255,0.14)', color: 'rgba(244,247,255,0.86)', boxShadow: 'none' }}>
-                  Secure Paystack checkout
+                  {c('footer.pill_secure', 'Secure Paystack checkout')}
                 </a>
               </div>
             </div>
 
             <div>
-              <h4>Contact</h4>
-              <p>Email: <a href="mailto:support@example.com">support@example.com</a></p>
-              <p style={{ marginTop: '6px' }}>WhatsApp: <a href="https://wa.me/2348000000000" target="_blank" rel="noopener noreferrer">+234 800 000 0000</a></p>
-              <p style={{ marginTop: '6px' }}>Hours: Mon–Sat, 9am–6pm</p>
+              <h4>{c('footer.contact_title', 'Contact')}</h4>
+              <p>{c('footer.email_label', 'Email:')} <a href={`mailto:${cmsContent.contact?.email || c('footer.email', 'crowglogroup@gmail.com')}`}>{cmsContent.contact?.email || c('footer.email', 'crowglogroup@gmail.com')}</a></p>
+              <p style={{ marginTop: '6px' }}>{c('footer.whatsapp_label', 'WhatsApp:')} <a href={`https://wa.me/${cmsContent.contact?.whatsapp || c('footer.whatsapp_link', '2348000000000')}`} target="_blank" rel="noopener noreferrer">{c('footer.whatsapp_number', '+234 916 184 9691')}</a></p>
+              <p style={{ marginTop: '6px' }}>{c('footer.hours', 'Hours: Mon–Sat, 9am–6pm')}</p>
             </div>
 
             <div>
-              <h4>Disclaimer</h4>
+              <h4>{c('footer.disclaimer_title', 'Disclaimer')}</h4>
               <p>
-                This is an educational product and support service. We are not affiliated with CAC or SMEDAN, and we do not guarantee program availability/approval. Official decisions and issuance remain with the respective institutions.
+                {c('footer.disclaimer_text', 'This is an educational product and support service. We are not affiliated with CAC or SMEDAN, and we do not guarantee program availability/approval. Official decisions and issuance remain with the respective institutions.')}
               </p>
               <div className="footer-links" style={{ marginTop: '12px' }}>
-                <a href="#faq" onClick={(e) => { e.preventDefault(); scrollTo('faq'); }}>FAQ</a>
-                <a href="#pricing" onClick={(e) => { e.preventDefault(); scrollTo('pricing'); }}>Pricing</a>
-                <a href="#top" onClick={(e) => { e.preventDefault(); scrollTo('top'); }}>Back to top</a>
+                <a href="#faq" onClick={(e) => { e.preventDefault(); scrollTo('faq'); }}>{c('footer.link_faq', 'FAQ')}</a>
+                <a href="#pricing" onClick={(e) => { e.preventDefault(); scrollTo('pricing'); }}>{c('footer.link_pricing', 'Pricing')}</a>
+                <a href="#top" onClick={(e) => { e.preventDefault(); scrollTo('top'); }}>{c('footer.link_top', 'Back to top')}</a>
               </div>
             </div>
           </div>
 
           <div className="footer-bottom">
-            <span>© <span id="year">{new Date().getFullYear()}</span> CAC via SMEDAN Guide. All rights reserved.</span>
-            <span>Built for trust • Mobile-first • Secure checkout</span>
+            <span>© <span id="year">{new Date().getFullYear()}</span> {c('footer.copyright', 'CAC via SMEDAN Guide. All rights reserved.')}</span>
+            <span>{c('footer.tagline', 'Built for trust • Mobile-first • Secure checkout')}</span>
           </div>
         </div>
       </footer>

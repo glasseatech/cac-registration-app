@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
+import { getURL } from '@/lib/utils/helpers';
 
 export default function SignupPage() {
     const [email, setEmail] = useState('');
@@ -21,7 +22,7 @@ export default function SignupPage() {
         const { error } = await supabase.auth.signInWithOtp({
             email,
             options: {
-                emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
+                emailRedirectTo: `${getURL()}/auth/callback`,
                 data: {
                     full_name: fullName,
                 },

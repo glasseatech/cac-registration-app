@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import axios from 'axios';
+import { getURL } from '@/lib/utils/helpers';
 
 export async function POST(req: NextRequest) {
     try {
@@ -19,7 +20,7 @@ export async function POST(req: NextRequest) {
                 email,
                 amount: amount * 100, // Paystack expects kobo
                 metadata,
-                callback_url: `${process.env.NEXT_PUBLIC_SITE_URL}/api/paystack/verify`, // Important: Server-side verification
+                callback_url: `${getURL()}/api/paystack/verify`, // Important: Server-side verification
             },
             {
                 headers: {

@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
+import { Suspense } from 'react';
+import AuthHandler from '@/components/auth/AuthHandler';
 
 export const metadata: Metadata = {
     title: 'CAC Registration via SMEDAN (FREE) — ₦5000 Promo Course',
@@ -23,7 +25,12 @@ export default function RootLayout({
                 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
                 <script src="https://js.paystack.co/v1/inline.js" async></script>
             </head>
-            <body style={{ fontFamily: "'Inter', sans-serif" }}>{children}</body>
+            <body style={{ fontFamily: "'Inter', sans-serif" }}>
+                <Suspense fallback={null}>
+                    <AuthHandler />
+                </Suspense>
+                {children}
+            </body>
         </html>
     );
 }
