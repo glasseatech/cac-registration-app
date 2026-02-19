@@ -232,12 +232,22 @@ export default function MainPage({ isPaid = false, user, cmsContent = {}, copy =
                     <span className="hidden sm:inline">{c('hero.badge_cancelled', 'cancelled')}</span>
                     <span style={{ opacity: .85 }}>→</span>
                     <span className="now text-sm md:text-base">{c('hero.badge_now', 'Now')} ₦{price}</span>
-                    <span className="hidden sm:inline" style={{ opacity: .85 }}>• {c('hero.badge_limited', 'limited-time')}</span>
+                    <span style={{ opacity: .85 }}>• {c('hero.badge_limited', 'limited-time')}</span>
                   </div>
                 </div>
 
                 <h1 id="hero-title" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.1] md:leading-[1.06] mb-3 md:mb-4">
-                  {cmsContent.hero?.headline || "Register Your Business with CAC"}
+                  {cmsContent.hero?.headline ? (
+                    cmsContent.hero.headline.split(/(Register Your|Business with|CAC)/).map((part: string, i: number) => {
+                      if (part === 'Register Your' || part === 'Business with') return <span key={i} className="primary-accent">{part}</span>;
+                      if (part === 'CAC') return <span key={i} className="accent-text">CAC</span>;
+                      return part;
+                    })
+                  ) : (
+                    <>
+                      <span className="primary-accent">Register Your</span> <span className="primary-accent">Business with</span> <span className="accent-text">CAC</span>
+                    </>
+                  )}
                 </h1>
                 <p className="hero-p text-sm md:text-lg mb-6 md:mb-8 opacity-90 mx-auto md:mx-0">
                   {cmsContent.hero?.subheadline || "A practical, step-by-step guide to help you register your business independently with the Corporate Affairs Commission (CAC). Save time, save money, and get it right the first time."}
