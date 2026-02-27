@@ -32,20 +32,39 @@ UPDATE public.site_sections
 SET content_json = content_json || '{"whatsapp": "2349161849691"}'::jsonb
 WHERE page = 'guide' AND section_key = 'settings';
 
--- 6. Add SMEDAN Visual Guide Module and Lessons
--- First, ensure the module exists (using a fixed UUID for consistency)
-INSERT INTO public.guide_modules (id, title, description, "order", is_published)
-VALUES ('550e8400-e29b-41d4-a716-446655440000', 'SMEDAN Registration Process (Visual Guide)', 'A step-by-step visual walkthrough of the SMEDAN portal registration.', 0, true)
-ON CONFLICT (id) DO UPDATE SET title = EXCLUDED.title, description = EXCLUDED.description;
+-- 6. INTEGRATE IMAGES INTO EXISTING GUIDE FLOW
+-- First, clean up the separate module we created by mistake
+DELETE FROM public.guide_lessons WHERE module_id = '550e8400-e29b-41d4-a716-446655440000';
+DELETE FROM public.guide_modules WHERE id = '550e8400-e29b-41d4-a716-446655440000';
 
--- Insert the steps as lessons (with fixed IDs to prevent duplicates)
-INSERT INTO public.guide_lessons (id, module_id, title, content, "order", is_published)
-VALUES 
-('d1a10001-e29b-41d4-a716-446655440001', '550e8400-e29b-41d4-a716-446655440000', 'Step 1: Visit SMEDAN Portal', '<p>Click the link below to visit the SMEDAN portal <a href="https://smedan.gov.ng" target="_blank">smedan.gov.ng</a>.</p><img src="/assets/guide-smedan-step1.png" alt="Step 1" class="rounded-xl shadow-lg mt-4 w-full" />', 1, true),
-('d1a10002-e29b-41d4-a716-446655440002', '550e8400-e29b-41d4-a716-446655440000', 'Step 2: Enter Business Details', '<p>Enter your business details into the registration form as shown below.</p><img src="/assets/guide-smedan-step2a.png" alt="Step 2a" class="rounded-xl shadow-lg mt-4 w-full" />', 2, true),
-('d1a10003-e29b-41d4-a716-446655440003', '550e8400-e29b-41d4-a716-446655440000', 'Step 2 (cont): Select Business Type', '<p>Select your business type carefully from the dropdown menu.</p><img src="/assets/guide-smedan-step2b.png" alt="Step 2b" class="rounded-xl shadow-lg mt-4 w-full" />', 3, true),
-('d1a10004-e29b-41d4-a716-446655440004', '550e8400-e29b-41d4-a716-446655440000', 'Step 3: Search Business', '<p>Once you''ve filled the basic info, click on "Search Business" to proceed.</p><img src="/assets/guide-smedan-step3.png" alt="Step 3" class="rounded-xl shadow-lg mt-4 w-full" />', 4, true),
-('d1a10005-e29b-41d4-a716-446655440005', '550e8400-e29b-41d4-a716-446655440000', 'Step 4: Download Certificate', '<p>Download your SMEDAN Certificate of Registration once the process is completed.</p><img src="/assets/guide-smedan-step4.png" alt="Step 4" class="rounded-xl shadow-lg mt-4 w-full" />', 5, true),
-('d1a10006-e29b-41d4-a716-446655440006', '550e8400-e29b-41d4-a716-446655440000', 'Step 5: Dashboard Navigation', '<p>From your dashboard, navigate and click on "Register Business".</p><img src="/assets/guide-smedan-step5.png" alt="Step 5" class="rounded-xl shadow-lg mt-4 w-full" />', 6, true),
-('d1a10007-e29b-41d4-a716-446655440007', '550e8400-e29b-41d4-a716-446655440000', 'Step 6: Operation Scoping', '<p>Follow the instructions to fill in your most suitable business operations.</p><img src="/assets/guide-smedan-step6.png" alt="Step 6" class="rounded-xl shadow-lg mt-4 w-full" />', 7, true)
-ON CONFLICT (id) DO UPDATE SET content = EXCLUDED.content, title = EXCLUDED.title;
+-- Now update existing lessons with their respective images
+-- Step 1
+UPDATE public.guide_lessons 
+SET content = '<p>Click the link below to visit the SMEDAN portal <a href="https://smedan.gov.ng" target="_blank">smedan.gov.ng</a>.</p><img src="/assets/guide-smedan-step1.png" alt="Step 1" class="rounded-xl shadow-lg mt-4 w-full" />'
+WHERE title = 'Step 1: SMEDAN Website';
+
+-- Step 2
+UPDATE public.guide_lessons 
+SET content = '<p>Follow these steps to register:</p><ol><li>Enter your business details.</li><li>Select your business type.</li></ol><img src="/assets/guide-smedan-step2a.png" alt="Step 2a" class="rounded-xl shadow-lg mt-4 w-full" /><img src="/assets/guide-smedan-step2b.png" alt="Step 2b" class="rounded-xl shadow-lg mt-4 w-full" />'
+WHERE title = 'Step 2: Registration Process';
+
+-- Step 3 (Updating title and content to match user's Search Business step)
+UPDATE public.guide_lessons 
+SET title = 'Step 3: Search Business',
+    content = '<p>Click on Search Business to proceed with your verification.</p><img src="/assets/guide-smedan-step3.png" alt="Step 3" class="rounded-xl shadow-lg mt-4 w-full" />'
+WHERE title = 'Step 3: Verification';
+
+-- Step 4
+UPDATE public.guide_lessons 
+SET content = '<p>Download your SMEDAN Certificate of Registration once completed.</p><img src="/assets/guide-smedan-step4.png" alt="Step 4" class="rounded-xl shadow-lg mt-4 w-full" />'
+WHERE title = 'Step 4: Download Certificate';
+
+-- Step 5
+UPDATE public.guide_lessons 
+SET content = '<p>Glide to "Register Business" on your SMEDAN Dashboard.</p><img src="/assets/guide-smedan-step5.png" alt="Step 5" class="rounded-xl shadow-lg mt-4 w-full" />'
+WHERE title = 'Step 5: Dashboard Navigation';
+
+-- Step 6
+UPDATE public.guide_lessons 
+SET content = '<p>Follow the instructions to fill your most suitable operations.</p><img src="/assets/guide-smedan-step6.png" alt="Step 6" class="rounded-xl shadow-lg mt-4 w-full" />'
+WHERE title = 'Step 6: Operation Scoping';
