@@ -129,3 +129,22 @@ INSERT INTO public.site_sections (page, section_key, title, subtitle, content_js
  '{"items": [{"type": "webinar", "title": "Live Webinar", "description": "Ask questions live, see a sample registration, and network with others.", "price": "₦2,500", "btnText": "Launching soon", "color": "blue"}, {"type": "ebook", "title": "DIY E-Book", "description": "A complete guide you can keep and revisit anytime for your business name.", "price": "₦2,500", "btnText": "Launching soon", "color": "orange"}, {"type": "session", "title": "One-on-One Session", "description": "Get dedicated personal guidance from our team until your business is fully registered. No limitations, just bold results.", "price": "₦5,000", "btnText": "Launching soon", "color": "dark"}]}'::jsonb
 )
 ON CONFLICT (page, section_key) DO NOTHING;
+
+
+-- ============================================================
+-- GUIDE MODULES & LESSONS
+-- ============================================================
+
+INSERT INTO public.guide_modules (id, title, description, "order", is_published) VALUES
+('550e8400-e29b-41d4-a716-446655440000', 'SMEDAN Registration Process (Visual Guide)', 'A step-by-step visual walkthrough of the SMEDAN portal registration.', 10, true)
+ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO public.guide_lessons (module_id, title, content, "order", is_published) VALUES
+('550e8400-e29b-41d4-a716-446655440000', 'Step 1: Visit SMEDAN Portal', '<p>Click the link below to visit the SMEDAN portal <a href="https://smedan.gov.ng" target="_blank">smedan.gov.ng</a>.</p><img src="/assets/guide-smedan-step1.png" alt="Step 1" class="rounded-xl shadow-lg mt-4 w-full" />', 1, true),
+('550e8400-e29b-41d4-a716-446655440000', 'Step 2: Enter Business Details', '<p>Enter your business details into the registration form as shown below.</p><img src="/assets/guide-smedan-step2a.png" alt="Step 2a" class="rounded-xl shadow-lg mt-4 w-full" />', 2, true),
+('550e8400-e29b-41d4-a716-446655440000', 'Step 2 (cont): Select Business Type', '<p>Select your business type carefully from the dropdown menu.</p><img src="/assets/guide-smedan-step2b.png" alt="Step 2b" class="rounded-xl shadow-lg mt-4 w-full" />', 3, true),
+('550e8400-e29b-41d4-a716-446655440000', 'Step 3: Search Business', '<p>Once you''ve filled the basic info, click on "Search Business" to proceed.</p><img src="/assets/guide-smedan-step3.png" alt="Step 3" class="rounded-xl shadow-lg mt-4 w-full" />', 4, true),
+('550e8400-e29b-41d4-a716-446655440000', 'Step 4: Download Certificate', '<p>Download your SMEDAN Certificate of Registration once the process is completed.</p><img src="/assets/guide-smedan-step4.png" alt="Step 4" class="rounded-xl shadow-lg mt-4 w-full" />', 5, true),
+('550e8400-e29b-41d4-a716-446655440000', 'Step 5: Dashboard Navigation', '<p>From your dashboard, navigate and click on "Register Business".</p><img src="/assets/guide-smedan-step5.png" alt="Step 5" class="rounded-xl shadow-lg mt-4 w-full" />', 6, true),
+('550e8400-e29b-41d4-a716-446655440000', 'Step 6: Operation Scoping', '<p>Follow the instructions to fill in your most suitable business operations.</p><img src="/assets/guide-smedan-step6.png" alt="Step 6" class="rounded-xl shadow-lg mt-4 w-full" />', 7, true)
+ON CONFLICT DO NOTHING;
