@@ -121,8 +121,9 @@ export default function GuideContent({ cmsContent = {}, modules = [], copy = {} 
                                 <h4 className="font-black text-lg mb-2">{helpTitle}</h4>
                                 <p className="text-white/80 text-sm font-medium mb-6">{helpSubtitle}</p>
                                 <a
-                                    href={`https://wa.me/${whatsappLink}`}
+                                    href="https://www.whatsapp.com/channel/0029Vb74uVzHgZWmEyfHH83U"
                                     target="_blank"
+                                    rel="noopener noreferrer"
                                     className="inline-flex w-full items-center justify-center gap-2 bg-white text-[#0B5E2E] py-4 rounded-2xl font-black text-sm hover:shadow-lg transition-all active:scale-95"
                                 >
                                     {c('guide.help_btn', 'Chat with Support')}

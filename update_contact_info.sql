@@ -27,9 +27,9 @@ UPDATE public.copy_strings
 SET value = '+234 916 184 9691'
 WHERE key = 'footer.whatsapp_number';
 
--- 5. Update Guide Sidebar Support
+-- 5. Update Guide Sidebar Support (WhatsApp Channel)
 UPDATE public.site_sections
-SET content_json = content_json || '{"whatsapp": "2349161849691"}'::jsonb
+SET content_json = content_json || '{"whatsapp": "https://www.whatsapp.com/channel/0029Vb74uVzHgZWmEyfHH83U"}'::jsonb
 WHERE page = 'guide' AND section_key = 'settings';
 
 -- 6. INTEGRATE IMAGES INTO EXISTING GUIDE FLOW (WITH FULL DESCRIPTIONS)
