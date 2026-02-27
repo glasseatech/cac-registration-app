@@ -5,6 +5,9 @@ import { getAllCopyStrings } from '@/app/actions/cms';
 import { getGuideStructure, getSiteSections } from '@/app/actions/admin';
 import GuideContent from '@/components/GuideContent';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 type PageProps = {
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
