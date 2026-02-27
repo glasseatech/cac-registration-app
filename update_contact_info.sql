@@ -32,15 +32,15 @@ UPDATE public.site_sections
 SET content_json = content_json || '{"whatsapp": "2349161849691"}'::jsonb
 WHERE page = 'guide' AND section_key = 'settings';
 
--- 6. INTEGRATE IMAGES INTO EXISTING GUIDE FLOW
+-- 6. INTEGRATE IMAGES INTO EXISTING GUIDE FLOW (WITH FULL DESCRIPTIONS)
 -- First, clean up the separate module we created by mistake
 DELETE FROM public.guide_lessons WHERE module_id = '550e8400-e29b-41d4-a716-446655440000';
 DELETE FROM public.guide_modules WHERE id = '550e8400-e29b-41d4-a716-446655440000';
 
--- Now update existing lessons with their respective images
+-- Now update existing lessons with their respective descriptions AND images
 -- Step 1
 UPDATE public.guide_lessons 
-SET content = '<p>Click the link below to visit the SMEDAN portal <a href="https://smedan.gov.ng" target="_blank">smedan.gov.ng</a>.</p><img src="/assets/guide-smedan-step1.png" alt="Step 1" class="rounded-xl shadow-lg mt-4 w-full" />'
+SET content = '<p>Click the link below to visit the SMEDAN portal:</p><p><a href="https://smedan.gov.ng" target="_blank" class="text-[#0B5E2E] font-bold">smedan.gov.ng</a></p><img src="/assets/guide-smedan-step1.png" alt="Step 1" class="rounded-xl shadow-lg mt-4 w-full" />'
 WHERE title = 'Step 1: SMEDAN Website';
 
 -- Step 2
@@ -48,11 +48,11 @@ UPDATE public.guide_lessons
 SET content = '<p>Follow these steps to register:</p><ol><li>Enter your business details.</li><li>Select your business type.</li></ol><img src="/assets/guide-smedan-step2a.png" alt="Step 2a" class="rounded-xl shadow-lg mt-4 w-full" /><img src="/assets/guide-smedan-step2b.png" alt="Step 2b" class="rounded-xl shadow-lg mt-4 w-full" />'
 WHERE title = 'Step 2: Registration Process';
 
--- Step 3 (Updating title and content to match user's Search Business step)
+-- Step 3
 UPDATE public.guide_lessons 
 SET title = 'Step 3: Search Business',
-    content = '<p>Click on Search Business to proceed with your verification.</p><img src="/assets/guide-smedan-step3.png" alt="Step 3" class="rounded-xl shadow-lg mt-4 w-full" />'
-WHERE title = 'Step 3: Verification';
+    content = '<p>Click on Search Business to proceed with your verification as shown in the image below.</p><img src="/assets/guide-smedan-step3.png" alt="Step 3" class="rounded-xl shadow-lg mt-4 w-full" />'
+WHERE title = 'Step 3: Verification' OR title = 'Step 3: Search Business';
 
 -- Step 4
 UPDATE public.guide_lessons 

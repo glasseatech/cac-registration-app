@@ -131,11 +131,10 @@ INSERT INTO public.site_sections (page, section_key, title, subtitle, content_js
 ON CONFLICT (page, section_key) DO NOTHING;
 
 
--- INTEGRATE IMAGES INTO EXISTING GUIDE FLOW (Note: In a real seed, these would be part of the main INSERTs)
--- But for consistency with your current environment:
-UPDATE public.guide_lessons SET content = '<p>Click the link below to visit the SMEDAN portal <a href="https://smedan.gov.ng" target="_blank">smedan.gov.ng</a>.</p><img src="/assets/guide-smedan-step1.png" alt="Step 1" class="rounded-xl shadow-lg mt-4 w-full" />' WHERE title = 'Step 1: SMEDAN Website';
+-- INTEGRATE IMAGES INTO EXISTING GUIDE FLOW (WITH FULL DESCRIPTIONS)
+UPDATE public.guide_lessons SET content = '<p>Click the link below to visit the SMEDAN portal:</p><p><a href="https://smedan.gov.ng" target="_blank" class="text-[#0B5E2E] font-bold">smedan.gov.ng</a></p><img src="/assets/guide-smedan-step1.png" alt="Step 1" class="rounded-xl shadow-lg mt-4 w-full" />' WHERE title = 'Step 1: SMEDAN Website';
 UPDATE public.guide_lessons SET content = '<p>Follow these steps to register:</p><ol><li>Enter your business details.</li><li>Select your business type.</li></ol><img src="/assets/guide-smedan-step2a.png" alt="Step 2a" class="rounded-xl shadow-lg mt-4 w-full" /><img src="/assets/guide-smedan-step2b.png" alt="Step 2b" class="rounded-xl shadow-lg mt-4 w-full" />' WHERE title = 'Step 2: Registration Process';
-UPDATE public.guide_lessons SET title = 'Step 3: Search Business', content = '<p>Click on Search Business to proceed with your verification.</p><img src="/assets/guide-smedan-step3.png" alt="Step 3" class="rounded-xl shadow-lg mt-4 w-full" />' WHERE title = 'Step 3: Verification';
+UPDATE public.guide_lessons SET title = 'Step 3: Search Business', content = '<p>Click on Search Business to proceed with your verification as shown in the image below.</p><img src="/assets/guide-smedan-step3.png" alt="Step 3" class="rounded-xl shadow-lg mt-4 w-full" />' WHERE title = 'Step 3: Verification' OR title = 'Step 3: Search Business';
 UPDATE public.guide_lessons SET content = '<p>Download your SMEDAN Certificate of Registration once completed.</p><img src="/assets/guide-smedan-step4.png" alt="Step 4" class="rounded-xl shadow-lg mt-4 w-full" />' WHERE title = 'Step 4: Download Certificate';
 UPDATE public.guide_lessons SET content = '<p>Glide to "Register Business" on your SMEDAN Dashboard.</p><img src="/assets/guide-smedan-step5.png" alt="Step 5" class="rounded-xl shadow-lg mt-4 w-full" />' WHERE title = 'Step 5: Dashboard Navigation';
 UPDATE public.guide_lessons SET content = '<p>Follow the instructions to fill your most suitable operations.</p><img src="/assets/guide-smedan-step6.png" alt="Step 6" class="rounded-xl shadow-lg mt-4 w-full" />' WHERE title = 'Step 6: Operation Scoping';
