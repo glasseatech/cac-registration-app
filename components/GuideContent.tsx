@@ -40,7 +40,7 @@ export default function GuideContent({ cmsContent = {}, modules = [], copy = {} 
     const sidebarTitle = settings.sidebar_title || c('guide.sidebar_title', 'Registration Journey');
     const helpTitle = settings.help_title || c('guide.help_title', 'Need Help?');
     const helpSubtitle = settings.help_subtitle || c('guide.help_subtitle', 'Our team is available for WhatsApp support.');
-    const whatsappLink = settings.whatsapp || cmsContent?.contact?.whatsapp || c('footer.whatsapp_link', '2348000000000');
+    const whatsappLink = settings.whatsapp || cmsContent?.contact?.whatsapp || c('footer.whatsapp_link', '2349161849691');
 
     const upsellItems = (cmsContent?.upsell?.items && cmsContent.upsell.items.length > 0)
         ? cmsContent.upsell.items

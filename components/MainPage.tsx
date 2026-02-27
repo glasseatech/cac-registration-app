@@ -683,7 +683,7 @@ export default function MainPage({ isPaid = false, user, cmsContent = {}, copy =
 
                   <div className="divider"></div>
                   <p className="subtle" style={{ margin: 0 }}>
-                    Support: {cmsContent.contact?.email || c('footer.email', 'crowglogroup@gmail.com')} • <a href={`https://wa.me/${cmsContent.contact?.whatsapp || c('footer.whatsapp_link', '2348000000000')}`}>WhatsApp</a>
+                    Support: {cmsContent.contact?.email || c('footer.email', 'crowglogroup@gmail.com')} • <a href={`https://wa.me/${cmsContent.contact?.whatsapp || c('footer.whatsapp_link', '2349161849691')}`}>WhatsApp</a>
                   </p>
                 </div>
               </div>
@@ -785,7 +785,7 @@ export default function MainPage({ isPaid = false, user, cmsContent = {}, copy =
             <div>
               <h4>{c('footer.contact_title', 'Contact')}</h4>
               <p>{c('footer.email_label', 'Email:')} <a href={`mailto:${cmsContent.contact?.email || c('footer.email', 'crowglogroup@gmail.com')}`}>{cmsContent.contact?.email || c('footer.email', 'crowglogroup@gmail.com')}</a></p>
-              <p style={{ marginTop: '6px' }}>{c('footer.whatsapp_label', 'WhatsApp:')} <a href={`https://wa.me/${cmsContent.contact?.whatsapp || c('footer.whatsapp_link', '2348000000000')}`} target="_blank" rel="noopener noreferrer">{c('footer.whatsapp_number', '+234 916 184 9691')}</a></p>
+              <p style={{ marginTop: '6px' }}>{c('footer.whatsapp_label', 'WhatsApp:')} <a href={`https://wa.me/${cmsContent.contact?.whatsapp || c('footer.whatsapp_link', '2349161849691')}`} target="_blank" rel="noopener noreferrer">{c('footer.whatsapp_number', '+234 916 184 9691')}</a></p>
               <p style={{ marginTop: '6px' }}>{c('footer.hours', 'Hours: Mon–Sat, 9am–6pm')}</p>
             </div>
 

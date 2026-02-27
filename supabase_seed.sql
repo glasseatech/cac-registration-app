@@ -33,7 +33,7 @@ INSERT INTO public.copy_strings (key, value, category, description) VALUES
 ('footer.email', 'crowglogroup@gmail.com', 'footer', 'Email address'),
 ('footer.whatsapp_label', 'WhatsApp:', 'footer', 'Label'),
 ('footer.whatsapp_number', '+234 916 184 9691', 'footer', 'Display number'),
-('footer.whatsapp_link', '2348000000000', 'footer', 'WhatsApp link number'),
+('footer.whatsapp_link', '2349161849691', 'footer', 'WhatsApp link number'),
 ('footer.hours', 'Hours: Mon–Sat, 9am–6pm', 'footer', 'Business hours'),
 ('footer.disclaimer_title', 'Disclaimer', 'footer', 'Column heading'),
 ('footer.disclaimer_text', 'This is an educational product and support service. We are not affiliated with CAC or SMEDAN, and we do not guarantee program availability/approval. Official decisions and issuance remain with the respective institutions.', 'footer', 'Disclaimer body'),
@@ -117,7 +117,7 @@ INSERT INTO public.site_sections (page, section_key, title, subtitle, content_js
  '{"questions": [{"q": "Is CAC registration really free through SMEDAN?", "a": "SMEDAN-supported programs may cover CAC registration fees for eligible applicants and while program slots/funding are available. The course explains how to follow that pathway correctly."}, {"q": "What am I paying ₦5000 for?", "a": "You''ll receive your access link by email after payment. WhatsApp support included."}, {"q": "Do you issue CAC certificates?", "a": "No. CAC certificates and approvals are issued by the official institutions. We provide guidance and support to help you complete the process properly."}]}'::jsonb
 ),
 ('landing', 'contact', NULL, NULL,
- '{"email": "crowglogroup@gmail.com", "whatsapp": "2348000000000"}'::jsonb
+ '{"email": "crowglogroup@gmail.com", "whatsapp": "2349161849691"}'::jsonb
 ),
 -- Guide page sections
 ('guide', 'course_intro', 'Welcome to CROWGLO HUB',

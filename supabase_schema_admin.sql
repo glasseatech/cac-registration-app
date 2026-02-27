@@ -85,5 +85,5 @@ create policy "Admins can manage settings"
 -- 4. INSERT DEFAULT SETTINGS
 insert into public.settings (key, value) values 
 ('promo', '{"isActive": true, "price": 1000, "originalPrice": 3000, "endDate": null}'::jsonb),
-('contact', '{"whatsapp": "2348000000000", "email": "crowglogroup@gmail.com"}'::jsonb)
+('contact', '{"whatsapp": "2349161849691", "email": "crowglogroup@gmail.com"}'::jsonb)
 on conflict (key) do nothing;

@@ -214,7 +214,7 @@ export default async function LandingCMSPage() {
                 page="landing"
                 saveAction="saveSiteSection"
                 initialData={getInitial('contact', {
-                    whatsapp: "2348000000000",
+                    whatsapp: "2349161849691",
                     email: "crowglogroup@gmail.com"
                 })}
                 fields={[

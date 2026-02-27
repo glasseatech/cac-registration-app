@@ -48,7 +48,7 @@ export default async function CourseCMSPage() {
                         sidebar_title: "Registration Journey",
                         help_title: "Need Help?",
                         help_subtitle: "Our team is available for WhatsApp support.",
-                        whatsapp: "2348000000000"
+                        whatsapp: "2349161849691"
                     }}
                     fields={[
                         { key: 'badge', label: 'Top Badge Text', type: 'text' },
