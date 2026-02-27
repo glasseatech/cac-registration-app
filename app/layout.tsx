@@ -3,6 +3,7 @@ import './globals.css';
 import { Suspense } from 'react';
 import AuthHandler from '@/components/auth/AuthHandler';
 import FacebookPixel from '@/components/FacebookPixel';
+import WhatsAppSupport from '@/components/WhatsAppSupport';
 
 export const metadata: Metadata = {
     title: 'CAC Registration via SMEDAN (FREE) — ₦5000 Promo Course',
@@ -34,6 +35,7 @@ export default function RootLayout({
                 <Suspense fallback={null}>
                     <AuthHandler />
                     <FacebookPixel />
+                    <WhatsAppSupport />
                 </Suspense>
                 {children}
             </body>
