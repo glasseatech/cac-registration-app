@@ -1,0 +1,2435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CAC Registration via SMEDAN (FREE) — ₦5000 Promo Course</title>
+  <meta name="description"
+    content="Get a step-by-step guide to register your business with CAC through SMEDAN for free. Limited-time promo: ₦5000 (was ₦3000). Secure payment via Paystack." />
+  <meta name="theme-color" content="#0B5E2E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+  <style>
+    :root {
+      --deep-green: #0B5E2E;
+      --accent-green: #1E8449;
+      --navy: #0F1C2E;
+      --gold: #F4B400;
+      --bg: #F8F9FA;
+      --text: #0B1220;
+      --muted: #5B6473;
+      --glass: rgba(255, 255, 255, 0.16);
+      --glass2: rgba(255, 255, 255, 0.10);
+      --glass-border: rgba(255, 255, 255, 0.26);
+      --shadow: 0 14px 40px rgba(15, 28, 46, 0.18);
+      --shadow-soft: 0 10px 24px rgba(15, 28, 46, 0.12);
+      --radius: 18px;
+      --radius-lg: 26px;
+      --ring: 0 0 0 4px rgba(244, 180, 0, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    .container {
+      width: min(1160px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -999px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+
+    .skip-link:focus {
+      left: 16px;
+      top: 16px;
+      width: auto;
+      height: auto;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: var(--shadow-soft);
+      z-index: 9999;
+    }
+
+    /* Top bar / Nav */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      background: rgba(248, 249, 250, 0.75);
+      border-bottom: 1px solid rgba(15, 28, 46, 0.08);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      gap: 14px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 220px;
+    }
+
+    .logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(11, 94, 46, 1), rgba(15, 28, 46, 1));
+      box-shadow: 0 10px 20px rgba(11, 94, 46, 0.18);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .logo:after {
+      content: "";
+      position: absolute;
+      inset: -30%;
+      background: radial-gradient(circle at 30% 30%, rgba(244, 180, 0, 0.45), transparent 55%);
+      transform: rotate(18deg);
+    }
+
+    .brand .name {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .brand .name strong {
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .brand .name span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      color: rgba(11, 18, 32, 0.78);
+      padding: 10px 10px;
+      border-radius: 12px;
+      transition: all .2s ease;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover {
+      background: rgba(15, 28, 46, 0.06);
+      color: rgba(11, 18, 32, 0.95);
+      transform: translateY(-1px);
+    }
+
+    .nav-cta {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      min-width: 220px;
+      justify-content: flex-end;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: rgba(15, 28, 46, 0.78);
+      background: rgba(255, 255, 255, 0.68);
+      border: 1px solid rgba(15, 28, 46, 0.12);
+      padding: 8px 10px;
+      border-radius: 999px;
+      box-shadow: 0 10px 18px rgba(15, 28, 46, 0.06);
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #16a34a;
+      box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.15);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: none;
+      cursor: pointer;
+      border-radius: 14px;
+      padding: 12px 16px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      transition: transform .18s ease, box-shadow .18s ease, filter .18s ease, background .18s ease;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn:active {
+      transform: translateY(0px) scale(0.99);
+    }
+
+    .btn:focus-visible {
+      outline: none;
+      box-shadow: var(--ring), var(--shadow-soft);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), #f6c23e);
+      color: #1a1a1a;
+      box-shadow: 0 14px 28px rgba(244, 180, 0, 0.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      filter: saturate(1.05);
+      box-shadow: 0 18px 36px rgba(244, 180, 0, 0.28);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.74);
+      border: 1px solid rgba(15, 28, 46, 0.14);
+      color: rgba(15, 28, 46, 0.9);
+      box-shadow: 0 10px 18px rgba(15, 28, 46, 0.08);
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.88);
+      box-shadow: 0 14px 26px rgba(15, 28, 46, 0.10);
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      padding: 56px 0 42px;
+      overflow: hidden;
+      background: radial-gradient(1200px 800px at 20% 20%, rgba(30, 132, 73, 0.50), transparent 55%),
+        radial-gradient(900px 700px at 80% 30%, rgba(0, 244, 183, 0.24), transparent 60%),
+        linear-gradient(135deg, #085f2c 0%, #227e45 70%);
+      color: #f4f7ff;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .hero:before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      background:
+        radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.10), transparent 40%),
+        radial-gradient(circle at 70% 20%, rgba(255, 255, 255, 0.08), transparent 45%);
+      pointer-events: none;
+      opacity: .9;
+    }
+
+    .hero-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 26px;
+      align-items: stretch;
+    }
+
+    .hero-left {
+      padding: 10px 0;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .promo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.10);
+      border: 1px solid rgba(255, 255, 255, 0.20);
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .strike {
+      position: relative;
+      opacity: .9;
+      padding: 2px 6px;
+      border-radius: 999px;
+      background: rgba(15, 28, 46, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .strike s {
+      opacity: .9;
+    }
+
+    .now {
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(244, 180, 0, 0.18);
+      border: 1px solid rgba(244, 180, 0, 0.40);
+      color: #fff;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: clamp(30px, 3.2vw, 52px);
+      line-height: 1.06;
+      letter-spacing: -0.04em;
+      font-weight: 900;
+      text-wrap: balance;
+    }
+
+    .hero p {
+      margin: 0 0 18px;
+      color: rgba(244, 247, 255, 0.86);
+      font-size: 16px;
+      max-width: 60ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-top: 12px;
+    }
+
+    .microtrust {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      color: rgba(244, 247, 255, 0.82);
+      font-size: 13px;
+    }
+
+    .microtrust .check {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .icon {
+      width: 16px;
+      height: 16px;
+      flex: 0 0 auto;
+    }
+
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .glass-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .glass-card:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.02));
+      pointer-events: none;
+    }
+
+    .card-pad {
+      padding: 18px;
+      position: relative;
+    }
+
+    .countdown-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .countdown-title strong {
+      font-weight: 850;
+      letter-spacing: -0.02em;
+      color: rgba(255, 255, 255, 0.94);
+    }
+
+    .countdown-title span {
+      font-size: 12px;
+      color: rgba(244, 247, 255, 0.78);
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(15, 28, 46, 0.22);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .timer {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .timebox {
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.10);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 12px 10px;
+      text-align: center;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
+      transition: transform .18s ease;
+    }
+
+    .timebox:hover {
+      transform: translateY(-2px);
+    }
+
+    .timebox .num {
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: #fff;
+      line-height: 1;
+    }
+
+    .timebox .lbl {
+      margin-top: 6px;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(244, 247, 255, 0.76);
+    }
+
+    .mini-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .input {
+      width: 100%;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.20);
+      background: rgba(255, 255, 255, 0.10);
+      color: #fff;
+      padding: 12px 12px;
+      outline: none;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+      transition: border .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+
+    .input::placeholder {
+      color: rgba(244, 247, 255, 0.62);
+    }
+
+    .input:focus {
+      border-color: rgba(244, 180, 0, 0.55);
+      box-shadow: 0 0 0 4px rgba(244, 180, 0, 0.20);
+      background: rgba(255, 255, 255, 0.13);
+    }
+
+    .hero-note {
+      font-size: 12.5px;
+      color: rgba(244, 247, 255, 0.78);
+      margin: 8px 0 0;
+    }
+
+    /* Sections */
+    section {
+      padding: 54px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(22px, 2.2vw, 32px);
+      letter-spacing: -0.03em;
+      line-height: 1.12;
+      font-weight: 900;
+      color: #0B1220;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 66ch;
+      font-size: 14.5px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .glass-light {
+      background: rgba(255, 255, 255, 0.64);
+      border: 1px solid rgba(15, 28, 46, 0.10);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      overflow: hidden;
+      position: relative;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+
+    .glass-light:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(11, 94, 46, 0.08), rgba(15, 28, 46, 0.02));
+      pointer-events: none;
+    }
+
+    .glass-light:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 38px rgba(15, 28, 46, 0.14);
+      border-color: rgba(11, 94, 46, 0.18);
+    }
+
+    .card {
+      padding: 18px;
+      position: relative;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      color: rgba(15, 28, 46, 0.78);
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(11, 94, 46, 0.06);
+      border: 1px solid rgba(11, 94, 46, 0.12);
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .kicon {
+      width: 28px;
+      height: 28px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(11, 94, 46, 0.14), rgba(15, 28, 46, 0.04));
+      border: 1px solid rgba(11, 94, 46, 0.14);
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      letter-spacing: -0.02em;
+      font-weight: 850;
+      font-size: 16.5px;
+      color: #0B1220;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* What you get list */
+    .features {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .feature-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .feat {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 12px 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(15, 28, 46, 0.10);
+      background: rgba(255, 255, 255, 0.62);
+      box-shadow: 0 10px 20px rgba(15, 28, 46, 0.08);
+      transition: transform .18s ease;
+    }
+
+    .feat:hover {
+      transform: translateY(-2px);
+    }
+
+    .tick {
+      width: 22px;
+      height: 22px;
+      border-radius: 8px;
+      background: rgba(30, 132, 73, 0.14);
+      border: 1px solid rgba(30, 132, 73, 0.22);
+      display: grid;
+      place-items: center;
+      margin-top: 1px;
+      flex: 0 0 auto;
+    }
+
+    .feat strong {
+      display: block;
+      font-size: 14px;
+      letter-spacing: -0.01em;
+    }
+
+    .feat span {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .side-card {
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(11, 94, 46, 0.10), rgba(15, 28, 46, 0.04));
+      border: 1px solid rgba(15, 28, 46, 0.10);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .side-card .inner {
+      padding: 18px;
+    }
+
+    .side-card h3 {
+      margin: 0 0 8px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+
+    .side-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .chip {
+      font-size: 12px;
+      font-weight: 700;
+      color: rgba(15, 28, 46, 0.85);
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.68);
+      border: 1px solid rgba(15, 28, 46, 0.10);
+    }
+
+    /* Proof */
+    .proof-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .testimonials {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .tcard {
+      padding: 16px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(15, 28, 46, 0.10);
+      background: rgba(255, 255, 255, 0.66);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+    .tcard:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 34px rgba(15, 28, 46, 0.14);
+    }
+
+    .tcard:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(500px 240px at 20% 20%, rgba(11, 94, 46, 0.10), transparent 60%),
+        radial-gradient(500px 240px at 80% 30%, rgba(244, 180, 0, 0.10), transparent 62%);
+      pointer-events: none;
+    }
+
+    .tmeta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+      position: relative;
+    }
+
+    .avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(11, 94, 46, 0.22), rgba(15, 28, 46, 0.10));
+      border: 1px solid rgba(15, 28, 46, 0.10);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      color: rgba(15, 28, 46, 0.85);
+      flex: 0 0 auto;
+    }
+
+    .tmeta .who {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .tmeta strong {
+      font-size: 13.5px;
+      letter-spacing: -0.01em;
+    }
+
+    .tmeta span {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 1px;
+    }
+
+    .stars {
+      display: inline-flex;
+      gap: 2px;
+      color: #b07f00;
+      opacity: .95;
+      font-size: 12px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(244, 180, 0, 0.10);
+      border: 1px solid rgba(244, 180, 0, 0.18);
+    }
+
+    .tquote {
+      margin: 0;
+      color: rgba(11, 18, 32, 0.86);
+      font-size: 14px;
+      position: relative;
+    }
+
+    .proof-right {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-height: 100%;
+    }
+
+    .shots {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .shot {
+      border-radius: var(--radius);
+      border: 1px dashed rgba(15, 28, 46, 0.18);
+      background: rgba(255, 255, 255, 0.60);
+      box-shadow: 0 10px 20px rgba(15, 28, 46, 0.08);
+      overflow: hidden;
+      height: 120px;
+      position: relative;
+      transition: transform .18s ease, border-color .18s ease;
+      cursor: pointer;
+    }
+
+    .preview-btn {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      border: none;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+    }
+
+    .shot:hover .preview-btn {
+      opacity: 1;
+    }
+
+    .preview-btn span {
+      background: #fff;
+      color: #0B5E2E;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      transform: translateY(4px);
+      transition: transform 0.2s ease;
+    }
+
+    .shot:hover .preview-btn span {
+      transform: translateY(0);
+    }
+
+    /* Lightbox Modal */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 28, 46, 0.95);
+      z-index: 10000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      backdrop-filter: blur(8px);
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 95%;
+      max-height: 90vh;
+      border-radius: 12px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      object-fit: contain;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: #fff;
+      border: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .shot .ph {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      color: rgba(15, 28, 46, 0.70);
+      text-align: center;
+      padding: 14px;
+    }
+
+    .shot .ph strong {
+      font-size: 13.5px;
+      letter-spacing: -0.01em;
+      color: rgba(15, 28, 46, 0.85);
+    }
+
+    .shot .ph span {
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+
+    .secure {
+      border-radius: var(--radius);
+      border: 1px solid rgba(11, 94, 46, 0.14);
+      background: linear-gradient(135deg, rgba(11, 94, 46, 0.08), rgba(255, 255, 255, 0.70));
+      box-shadow: var(--shadow-soft);
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .secure .left {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .lock {
+      width: 40px;
+      height: 40px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: rgba(11, 94, 46, 0.10);
+      border: 1px solid rgba(11, 94, 46, 0.16);
+      flex: 0 0 auto;
+    }
+
+    .secure strong {
+      display: block;
+      font-size: 14px;
+      letter-spacing: -0.01em;
+    }
+
+    .secure span {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* About */
+    .about {
+      background: radial-gradient(900px 400px at 10% 20%, rgba(11, 94, 46, 0.08), transparent 60%),
+        radial-gradient(700px 420px at 90% 10%, rgba(15, 28, 46, 0.06), transparent 62%);
+      border-top: 1px solid rgba(15, 28, 46, 0.06);
+      border-bottom: 1px solid rgba(15, 28, 46, 0.06);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    /* Pricing */
+    .pricing {
+      position: relative;
+      padding: 58px 0;
+    }
+
+    .price-wrap {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .price-card {
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, rgba(11, 94, 46, 0.12), rgba(255, 255, 255, 0.72));
+      border: 1px solid rgba(11, 94, 46, 0.16);
+      box-shadow: 0 20px 52px rgba(15, 28, 46, 0.14);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .price-card:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(800px 320px at 20% 20%, rgba(244, 180, 0, 0.16), transparent 60%),
+        radial-gradient(800px 320px at 80% 10%, rgba(11, 94, 46, 0.12), transparent 60%);
+      pointer-events: none;
+    }
+
+    .price-inner {
+      padding: 20px;
+      position: relative;
+    }
+
+    .price-tag {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      margin: 10px 0 10px;
+      flex-wrap: wrap;
+    }
+
+    .price {
+      font-weight: 950;
+      letter-spacing: -0.04em;
+      font-size: 46px;
+      color: #0B1220;
+      line-height: 1;
+    }
+
+    .price small {
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .was {
+      font-weight: 800;
+      color: rgba(15, 28, 46, 0.70);
+      background: rgba(15, 28, 46, 0.06);
+      border: 1px solid rgba(15, 28, 46, 0.10);
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+    }
+
+    .was s {
+      opacity: .9;
+    }
+
+    .limited {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 12px;
+      border-radius: 16px;
+      background: rgba(244, 180, 0, 0.12);
+      border: 1px solid rgba(244, 180, 0, 0.20);
+      color: rgba(15, 28, 46, 0.86);
+      margin-top: 12px;
+      font-size: 13.5px;
+      font-weight: 650;
+    }
+
+    .pulse {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--gold);
+      box-shadow: 0 0 0 0 rgba(244, 180, 0, 0.35);
+      animation: pulse 1.6s ease-in-out infinite;
+      flex: 0 0 auto;
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(244, 180, 0, 0.35);
+      }
+
+      70% {
+        box-shadow: 0 0 0 10px rgba(244, 180, 0, 0.00);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(244, 180, 0, 0.00);
+      }
+    }
+
+    .price-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    /* FAQ */
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .faq-item {
+      border-radius: var(--radius);
+      border: 1px solid rgba(15, 28, 46, 0.10);
+      background: rgba(255, 255, 255, 0.68);
+      box-shadow: 0 10px 20px rgba(15, 28, 46, 0.08);
+      overflow: hidden;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+    .faq-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 32px rgba(15, 28, 46, 0.12);
+    }
+
+    details {
+      padding: 0;
+    }
+
+    summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 16px 16px;
+      font-weight: 850;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      color: #0B1220;
+      outline: none;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .chev {
+      width: 18px;
+      height: 18px;
+      transition: transform .18s ease;
+      flex: 0 0 auto;
+      opacity: .8;
+    }
+
+    details[open] .chev {
+      transform: rotate(180deg);
+    }
+
+    .faq-content {
+      padding: 0 16px 16px;
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: -4px;
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, rgba(15, 28, 46, 1), rgba(11, 94, 46, 0.65));
+      color: rgba(244, 247, 255, 0.88);
+      padding: 36px 0 26px;
+      border-top: 1px solid rgba(255, 255, 255, 0.10);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .footer-grid h4 {
+      margin: 0 0 10px;
+      font-size: 14px;
+      letter-spacing: -0.01em;
+      font-weight: 900;
+      color: #fff;
+    }
+
+    .footer-grid p,
+    .footer-grid a {
+      margin: 0;
+      font-size: 13px;
+      color: rgba(244, 247, 255, 0.80);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-links a {
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.06);
+      width: fit-content;
+      transition: transform .18s ease, background .18s ease;
+    }
+
+    .footer-links a:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.10);
+    }
+
+    .footer-bottom {
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.10);
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      font-size: 12.5px;
+      color: rgba(244, 247, 255, 0.70);
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      width: min(440px, calc(100% - 32px));
+      border-radius: 18px;
+      padding: 12px 12px;
+      border: 1px solid rgba(15, 28, 46, 0.12);
+      background: rgba(255, 255, 255, 0.86);
+      box-shadow: 0 18px 44px rgba(15, 28, 46, 0.18);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: none;
+      gap: 10px;
+      align-items: flex-start;
+      z-index: 1000;
+    }
+
+    .toast.show {
+      display: flex;
+      animation: pop .22s ease;
+    }
+
+    @keyframes pop {
+      from {
+        transform: translateY(10px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .toast .ticon {
+      width: 38px;
+      height: 38px;
+      border-radius: 16px;
+      background: rgba(11, 94, 46, 0.10);
+      border: 1px solid rgba(11, 94, 46, 0.14);
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+    }
+
+    .toast strong {
+      display: block;
+      font-size: 13.5px;
+    }
+
+    .toast p {
+      margin: 2px 0 0;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .toast .close {
+      margin-left: auto;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 12px;
+      opacity: .75;
+    }
+
+    .toast .close:hover {
+      background: rgba(15, 28, 46, 0.06);
+      opacity: 1;
+    }
+
+    /* Utilities */
+    .muted {
+      color: var(--muted);
+    }
+
+    .divider {
+      height: 1px;
+      background: rgba(15, 28, 46, 0.08);
+      margin: 12px 0;
+    }
+
+    .subtle {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .anchor-pad {
+      scroll-margin-top: 86px;
+    }
+
+    .hide-mobile {
+      display: inline-flex;
+    }
+
+    /* Responsive */
+    @media (max-width: 980px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .brand {
+        min-width: auto;
+      }
+
+      .nav-cta {
+        min-width: auto;
+      }
+
+      .field-row {
+        grid-template-columns: 1fr;
+      }
+
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .proof-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .price-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .faq-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hide-mobile {
+        display: none;
+      }
+
+      section {
+        padding: 44px 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        scroll-behavior: auto !important;
+      }
+
+      .pulse,
+      .toast.show {
+        animation: none !important;
+      }
+
+      .btn,
+      .glass-light,
+      .tcard,
+      .shot,
+      .timebox,
+      .feat,
+      .nav-links a {
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="nav" role="banner">
+    <div class="container">
+      <div class="nav-inner">
+        <a class="brand" href="#top" aria-label="Go to top">
+          <div class="logo" aria-hidden="true"></div>
+          <div class="name">
+            <strong>CAC via SMEDAN Guide</strong>
+            <span>Limited promo • ₦5000 access</span>
+          </div>
+        </a>
+
+        <nav class="nav-links" aria-label="Primary">
+          <a href="#how">How it works</a>
+          <a href="#what">What you get</a>
+          <a href="#proof">Trust</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+
+        <div class="nav-cta">
+          <span class="pill hide-mobile" title="Secure payment">
+            <span class="dot" aria-hidden="true"></span>
+            Secure payment via Paystack
+          </span>
+          <button class="btn btn-primary" id="navPayBtn" type="button" aria-label="Pay and get access">
+            Get Access
+            <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M13 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                stroke-linejoin="round" />
+              <path d="M20 12H4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-left">
+            <div class="badge-row">
+              <div class="promo-badge" role="status" aria-label="Promo price">
+                <span class="strike"><s>₦3000</s></span>
+                <span>cancelled</span>
+                <span style="opacity:.85">→</span>
+                <span class="now">Now ₦5000</span>
+                <span style="opacity:.85">• limited-time</span>
+              </div>
+
+
+            </div>
+
+            <h1>Register Your Business with CAC for FREE</h1>
+            <p>
+              A clear, step-by-step course that shows you how to register through the SMEDAN-supported process, so CAC
+              fees are covered. You’ll know exactly what to do, what to prepare, and how to avoid common mistakes.
+            </p>
+
+            <div class="hero-actions">
+              <button class="btn btn-primary" id="heroPayBtn" type="button">
+                Get Access Now
+                <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M13 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                  <path d="M20 12H4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
+                </svg>
+              </button>
+              <a class="btn btn-secondary" href="#how">
+                See how it works
+                <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M12 5v14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
+                  <path d="M19 12l-7 7-7-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </a>
+            </div>
+
+            <div class="microtrust" aria-label="Trust indicators">
+              <span class="check">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M20 6L9 17l-5-5" stroke="rgba(255,255,255,0.92)" stroke-width="2.2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+                Clear steps (Beginner-friendly)
+              </span>
+              <span class="check">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M12 2l7 4v6c0 5-3 9-7 10C8 21 5 17 5 12V6l7-4Z" stroke="rgba(255,255,255,0.92)"
+                    stroke-width="2.0" stroke-linejoin="round" />
+                  <path d="M9.5 12l1.8 1.8L15.8 9" stroke="rgba(255,255,255,0.92)" stroke-width="2.0"
+                    stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                Paystack-secured payment
+              </span>
+              <span class="check">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M12 8v5l3 2" stroke="rgba(255,255,255,0.92)" stroke-width="2.2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                  <path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke="rgba(255,255,255,0.92)" stroke-width="2.0" />
+                </svg>
+                Lifetime access + updates
+              </span>
+            </div>
+          </div>
+
+          <aside class="hero-right" aria-label="Promo countdown and quick checkout">
+            <div class="glass-card">
+              <div class="card-pad">
+                <div class="countdown-title">
+                  <strong>Promo ends soon</strong>
+                  <span id="promoEndsLabel" aria-live="polite">Limited-time</span>
+                </div>
+
+                <div class="timer" role="timer" aria-label="Countdown timer">
+                  <div class="timebox">
+                    <div class="num" id="dd">00</div>
+                    <div class="lbl">Days</div>
+                  </div>
+                  <div class="timebox">
+                    <div class="num" id="hh">00</div>
+                    <div class="lbl">Hours</div>
+                  </div>
+                  <div class="timebox">
+                    <div class="num" id="mm">00</div>
+                    <div class="lbl">Minutes</div>
+                  </div>
+                  <div class="timebox">
+                    <div class="num" id="ss">00</div>
+                    <div class="lbl">Seconds</div>
+                  </div>
+                </div>
+
+                <form class="mini-form" id="payForm">
+                  <div class="field-row">
+                    <input class="input" type="text" id="fullName" name="fullName" placeholder="Full name"
+                      autocomplete="name" />
+                    <input class="input" type="tel" id="phone" name="phone" placeholder="Phone (WhatsApp)"
+                      autocomplete="tel" />
+                  </div>
+                  <input class="input" type="email" id="email" name="email" placeholder="Email for access link"
+                    autocomplete="email" required />
+                  <button class="btn btn-primary" id="payBtn" type="submit">
+                    Pay ₦5000 & Get Instant Access
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path d="M17 8V7a5 5 0 0 0-10 0v1" stroke="currentColor" stroke-width="2.2"
+                        stroke-linecap="round" />
+                      <path d="M7 8h10a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2Z"
+                        stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" />
+                    </svg>
+                  </button>
+                  <p class="hero-note">
+                    You’ll receive your access link by email after payment. WhatsApp support included.
+                  </p>
+                </form>
+              </div>
+            </div>
+
+            <div class="glass-card">
+              <div class="card-pad">
+                <div style="display:flex; gap:12px; align-items:flex-start;">
+                  <div class="kicon" style="background: rgba(244,180,0,0.16); border-color: rgba(244,180,0,0.26);">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path d="M12 2l7 4v6c0 5-3 9-7 10C8 21 5 17 5 12V6l7-4Z" stroke="rgba(255,255,255,0.95)"
+                        stroke-width="2.0" stroke-linejoin="round" />
+                      <path d="M9.5 12l1.8 1.8L15.8 9" stroke="rgba(255,255,255,0.95)" stroke-width="2.0"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </div>
+                  <div>
+                    <strong style="display:block; letter-spacing:-0.02em; color:rgba(255,255,255,0.95);">Trust-first,
+                      Nigerian institutional tone</strong>
+                    <span style="display:block; margin-top:4px; font-size:13px; color:rgba(244,247,255,0.80);">
+                      This is a guidance course to help you navigate the SMEDAN route clearly. Not a government office.
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how" class="anchor-pad">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>How it works (3 simple steps)</h2>
+            <p>Everything is structured so you can move from zero to submitted registration without confusion.</p>
+          </div>
+        </div>
+
+        <div class="grid-3">
+          <div class="glass-light">
+            <div class="card">
+              <div class="kicker">
+                <span class="kicon" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none">
+                    <path d="M4 7h16M4 12h16M4 17h10" stroke="rgba(15,28,46,0.82)" stroke-width="2.2"
+                      stroke-linecap="round" />
+                  </svg>
+                </span>
+                Step 1 • Enroll
+              </div>
+              <h3>Enroll for ₦5000 promo access</h3>
+              <p>Make a secure payment via Paystack and receive your access link immediately.</p>
+            </div>
+          </div>
+
+          <div class="glass-light">
+            <div class="card">
+              <div class="kicker">
+                <span class="kicon" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none">
+                    <path d="M4 4h16v16H4z" stroke="rgba(15,28,46,0.82)" stroke-width="2.2" />
+                    <path d="M7 9h10M7 13h7" stroke="rgba(15,28,46,0.82)" stroke-width="2.2" stroke-linecap="round" />
+                  </svg>
+                </span>
+                Step 2 • Follow guide
+              </div>
+              <h3>Use the step-by-step checklist</h3>
+              <p>See what to prepare, what to enter, and what to double-check to avoid rejections/delays.</p>
+            </div>
+          </div>
+
+          <div class="glass-light">
+            <div class="card">
+              <div class="kicker">
+                <span class="kicon" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2l9 5-9 5-9-5 9-5Z" stroke="rgba(15,28,46,0.82)" stroke-width="2.0"
+                      stroke-linejoin="round" />
+                    <path d="M3 10v7l9 5 9-5v-7" stroke="rgba(15,28,46,0.82)" stroke-width="2.0"
+                      stroke-linejoin="round" />
+                  </svg>
+                </span>
+                Step 3 • Register via SMEDAN
+              </div>
+              <h3>Apply using the SMEDAN pathway</h3>
+              <p>The course explains the SMEDAN-supported process where CAC fees are covered (when eligible and slots
+                are available).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT YOU GET -->
+    <section id="what" class="anchor-pad">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>What you get inside</h2>
+            <p>Built for clarity, speed, and confidence — with support when you need it.</p>
+          </div>
+        </div>
+
+        <div class="features">
+          <div>
+            <div class="feature-list">
+              <div class="feat">
+                <div class="tick" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none">
+                    <path d="M20 6L9 17l-5-5" stroke="rgba(30,132,73,0.95)" stroke-width="2.4" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </div>
+                <div>
+                  <strong>Step-by-step guide page</strong>
+                  <span>Simple flow, screenshots, and checklists so you don’t miss anything.</span>
+                </div>
+              </div>
+
+              <div class="feat">
+                <div class="tick" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none">
+                    <path d="M21 15a4 4 0 0 1-4 4H8l-5 3 1.5-4.5A4 4 0 0 1 3 15V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8Z"
+                      stroke="rgba(30,132,73,0.95)" stroke-width="2.0" stroke-linejoin="round" />
+                  </svg>
+                </div>
+                <div>
+                  <strong>WhatsApp support</strong>
+                  <span>Ask questions and get guided on common blockers and corrections.</span>
+                </div>
+              </div>
+
+              <div class="feat">
+                <div class="tick" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 8v5l3 2" stroke="rgba(30,132,73,0.95)" stroke-width="2.2" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                    <path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke="rgba(30,132,73,0.95)" stroke-width="2.0" />
+                  </svg>
+                </div>
+                <div>
+                  <strong>Lifetime access</strong>
+                  <span>Revisit the guide anytime — no expiring login drama.</span>
+                </div>
+              </div>
+
+              <div class="feat">
+                <div class="tick" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none">
+                    <path d="M21 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke="rgba(30,132,73,0.95)" stroke-width="2.0" />
+                    <path d="M12 6v6l4 2" stroke="rgba(30,132,73,0.95)" stroke-width="2.2" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </div>
+                <div>
+                  <strong>Updated instructions</strong>
+                  <span>When forms/links change, the guide is refreshed so you stay current.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="side-card">
+            <div class="inner">
+              <h3>Designed to feel official and reliable</h3>
+              <p>
+                The layout mirrors the way institutional processes work: requirements → steps → submission → follow-up.
+                No noise, no hype.
+              </p>
+              <div class="chips" aria-label="Key assurances">
+                <span class="chip">Beginner-friendly</span>
+                <span class="chip">Clear checklists</span>
+                <span class="chip">Fast support</span>
+                <span class="chip">Secure checkout</span>
+              </div>
+              <div class="divider"></div>
+              <p class="subtle">
+                Note: This course guides you through a SMEDAN-supported process. Approval/availability depends on
+                SMEDAN/CAC programs and eligibility.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROOF & TRUST -->
+    <section id="proof" class="anchor-pad">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Proof & trust</h2>
+            <p>Social proof, sample screenshots space, and a secure payment flow your customers recognize.</p>
+          </div>
+        </div>
+
+        <div class="proof-wrap">
+          <div class="testimonials" aria-label="Testimonials">
+            <div class="tcard">
+              <div class="tmeta">
+                <div class="who">
+                  <div class="avatar" aria-hidden="true">A</div>
+                  <div>
+                    <strong>Amaka • Lagos</strong>
+                    <span>“Clear steps, no confusion.”</span>
+                  </div>
+                </div>
+                <div class="stars" aria-label="5 star rating">★★★★★</div>
+              </div>
+              <p class="tquote">I didn’t know where to start. The checklist and screenshots made everything
+                straightforward, and support replied fast.</p>
+            </div>
+
+            <div class="tcard">
+              <div class="tmeta">
+                <div class="who">
+                  <div class="avatar" aria-hidden="true">M</div>
+                  <div>
+                    <strong>Mustapha • Abuja</strong>
+                    <span>“Saved me time.”</span>
+                  </div>
+                </div>
+                <div class="stars" aria-label="5 star rating">★★★★★</div>
+              </div>
+              <p class="tquote">I avoided common mistakes that cause delays. The guide is structured like an official
+                process.</p>
+            </div>
+
+            <div class="tcard">
+              <div class="tmeta">
+                <div class="who">
+                  <div class="avatar" aria-hidden="true">I</div>
+                  <div>
+                    <strong>Ifeoma • Enugu</strong>
+                    <span>“Worth it even at ₦3000.”</span>
+                  </div>
+                </div>
+                <div class="stars" aria-label="5 star rating">★★★★★</div>
+              </div>
+              <p class="tquote">For ₦5000 promo it’s a no-brainer. The updates also help because links and steps change.
+              </p>
+            </div>
+          </div>
+
+          <div class="proof-right" aria-label="Screenshots and payment security">
+            <div class="shots" aria-label="Certificate / proof screenshots placeholders">
+              <div class="shot" onclick="openLightbox(this.querySelector('img').src)">
+                <img src="assets/CAC testimonial 1.png" alt="CAC testimonial 1"
+                  style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                <div class="preview-btn"><span>Preview</span></div>
+              </div>
+              <div class="shot" onclick="openLightbox(this.querySelector('img').src)">
+                <img src="assets/CAC testimonial 2.png" alt="CAC testimonial 2"
+                  style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                <div class="preview-btn"><span>Preview</span></div>
+              </div>
+            </div>
+
+            <div class="secure" aria-label="Secure payment notice">
+              <div class="left">
+                <div class="lock" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none">
+                    <path d="M17 11V8a5 5 0 0 0-10 0v3" stroke="rgba(11,94,46,0.95)" stroke-width="2.2"
+                      stroke-linecap="round" />
+                    <path d="M7 11h10a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2Z"
+                      stroke="rgba(11,94,46,0.95)" stroke-width="2.2" stroke-linejoin="round" />
+                    <path d="M12 15v3" stroke="rgba(11,94,46,0.95)" stroke-width="2.2" stroke-linecap="round" />
+                  </svg>
+                </div>
+                <div>
+                  <strong>Secure Payment via Paystack</strong>
+                  <span>Cards, bank transfer, USSD (options depend on Paystack settings)</span>
+                </div>
+              </div>
+              <button class="btn btn-secondary" id="proofPayBtn" type="button">Pay ₦5000</button>
+            </div>
+
+            <div class="glass-light">
+              <div class="card">
+                <div class="kicker">
+                  <span class="kicon" aria-hidden="true">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none">
+                      <path d="M20 7l-8 8-4-4" stroke="rgba(15,28,46,0.82)" stroke-width="2.2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                      <path d="M4 12a8 8 0 1 0 16 0 8 8 0 0 0-16 0Z" stroke="rgba(15,28,46,0.82)" stroke-width="2.0" />
+                    </svg>
+                  </span>
+                  Credibility
+                </div>
+                <h3>Clear boundaries (trust-building)</h3>
+                <p>
+                  This is an educational guide + support to help you complete your SMEDAN/CAC process correctly. We are
+                  not a government agency and do not issue certificates ourselves.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="about anchor-pad">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>About this course</h2>
+            <p>Built from real registration experiences and common issues Nigerian business owners face.</p>
+          </div>
+        </div>
+
+        <div class="about-grid">
+          <div class="glass-light">
+            <div class="card">
+              <div class="kicker">
+                <span class="kicon" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z" stroke="rgba(15,28,46,0.82)" stroke-width="2.0" />
+                    <path d="M3 22a9 9 0 0 1 18 0" stroke="rgba(15,28,46,0.82)" stroke-width="2.0"
+                      stroke-linecap="round" />
+                  </svg>
+                </span>
+                Experience-driven
+              </div>
+              <h3>Practical, not theoretical</h3>
+              <p>
+                The guide focuses on what you actually need: requirements, exact steps, and how to avoid common mistakes
+                that lead to delays or rework.
+              </p>
+            </div>
+          </div>
+
+          <div class="glass-light">
+            <div class="card">
+              <div class="kicker">
+                <span class="kicon" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none">
+                    <path d="M7 7h10v10H7z" stroke="rgba(15,28,46,0.82)" stroke-width="2.2" />
+                    <path d="M4 10V6a2 2 0 0 1 2-2h4" stroke="rgba(15,28,46,0.82)" stroke-width="2.2"
+                      stroke-linecap="round" />
+                    <path d="M20 14v4a2 2 0 0 1-2 2h-4" stroke="rgba(15,28,46,0.82)" stroke-width="2.2"
+                      stroke-linecap="round" />
+                  </svg>
+                </span>
+                Support included
+              </div>
+              <h3>Guidance + WhatsApp support</h3>
+              <p>
+                You’re not left alone. If you get stuck on a step, you can ask for help and get direction to proceed
+                correctly.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing" class="pricing anchor-pad">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Limited-time promo pricing</h2>
+            <p>Professional guidance at a promotional price — designed to help you act quickly without pressure tactics.
+            </p>
+          </div>
+        </div>
+
+        <div class="price-wrap">
+          <div class="price-card">
+            <div class="price-inner">
+              <div class="kicker" style="background: rgba(244,180,0,0.12); border-color: rgba(244,180,0,0.20);">
+                <span class="kicon" style="background: rgba(244,180,0,0.16); border-color: rgba(244,180,0,0.26);"
+                  aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 8v5l3 2" stroke="rgba(15,28,46,0.88)" stroke-width="2.2" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                    <path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke="rgba(15,28,46,0.88)" stroke-width="2.0" />
+                  </svg>
+                </span>
+                Promo active
+              </div>
+
+              <h3 style="margin:0; font-size:18px; letter-spacing:-0.02em; font-weight:900;">CAC Registration via SMEDAN
+                (FREE) — Course Access</h3>
+              <p class="muted" style="margin:8px 0 0; font-size:14px;">
+                Includes step-by-step guide, updates, and WhatsApp support.
+              </p>
+
+              <div class="price-tag">
+                <div>
+                  <div class="price">₦5000 <small>/ one-time</small></div>
+                </div>
+                <div class="was"><s>₦3000</s> original</div>
+              </div>
+
+              <div class="limited" aria-live="polite">
+                <span class="pulse" aria-hidden="true"></span>
+                <span><strong>Limited-time offer</strong> — promo ends when countdown hits zero (or slots close).</span>
+              </div>
+
+              <div class="price-actions">
+                <button class="btn btn-primary" id="pricingPayBtn" type="button">
+                  Get Access for ₦5000
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M13 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                    <path d="M20 12H4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
+                  </svg>
+                </button>
+                <a class="btn btn-secondary" href="#faq">Read FAQs</a>
+              </div>
+
+              <div class="divider"></div>
+              <p class="subtle" style="margin:0;">
+                You’re paying for the educational guide and support. Any official approvals/issuance remain with
+                SMEDAN/CAC.
+              </p>
+            </div>
+          </div>
+
+          <div class="glass-light">
+            <div class="card">
+              <div class="kicker">
+                <span class="kicon" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2l7 4v6c0 5-3 9-7 10C8 21 5 17 5 12V6l7-4Z" stroke="rgba(15,28,46,0.82)"
+                      stroke-width="2.0" stroke-linejoin="round" />
+                    <path d="M9.5 12l1.8 1.8L15.8 9" stroke="rgba(15,28,46,0.82)" stroke-width="2.0"
+                      stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+                What makes this high-converting
+              </div>
+              <h3>Everything needed to reduce uncertainty</h3>
+              <p>
+                Buyers want clarity and trust. This page gives them both: a simple process, transparent disclaimers,
+                secure Paystack checkout, and proof placeholders for your real screenshots.
+              </p>
+              <div class="divider"></div>
+              <div class="feature-list" style="margin-top:0;">
+                <div class="feat" style="box-shadow:none;">
+                  <div class="tick" aria-hidden="true">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none">
+                      <path d="M20 6L9 17l-5-5" stroke="rgba(30,132,73,0.95)" stroke-width="2.4" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
+                  </div>
+                  <div>
+                    <strong>Professional tone (not spammy)</strong>
+                    <span>Urgency shown via countdown and promo badge only.</span>
+                  </div>
+                </div>
+                <div class="feat" style="box-shadow:none;">
+                  <div class="tick" aria-hidden="true">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none">
+                      <path d="M20 6L9 17l-5-5" stroke="rgba(30,132,73,0.95)" stroke-width="2.4" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
+                  </div>
+                  <div>
+                    <strong>Clear “what this is / isn’t”</strong>
+                    <span>Builds trust and reduces refunds/complaints.</span>
+                  </div>
+                </div>
+                <div class="feat" style="box-shadow:none;">
+                  <div class="tick" aria-hidden="true">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none">
+                      <path d="M20 6L9 17l-5-5" stroke="rgba(30,132,73,0.95)" stroke-width="2.4" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
+                  </div>
+                  <div>
+                    <strong>Mobile-first layout</strong>
+                    <span>Fast scanning, large CTA, sticky nav CTA.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="anchor-pad">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>FAQ</h2>
+            <p>Transparent answers to reduce hesitation and increase trust.</p>
+          </div>
+        </div>
+
+        <div class="faq-grid">
+          <div class="faq-item">
+            <details>
+              <summary>
+                Is CAC registration really free through SMEDAN?
+                <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M6 9l6 6 6-6" stroke="rgba(15,28,46,0.85)" stroke-width="2.2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </summary>
+              <div class="faq-content">
+                SMEDAN-supported programs may cover CAC registration fees for eligible applicants and while program
+                slots/funding are available. The course explains how to follow that pathway correctly.
+              </div>
+            </details>
+          </div>
+
+          <div class="faq-item">
+            <details>
+              <summary>
+                What am I paying ₦5000 for?
+                <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M6 9l6 6 6-6" stroke="rgba(15,28,46,0.85)" stroke-width="2.2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </summary>
+              <div class="faq-content">
+                You’re paying for the educational guide (step-by-step instructions, checklists, and updates) plus
+                WhatsApp support. This is not an official government service.
+              </div>
+            </details>
+          </div>
+
+          <div class="faq-item">
+            <details>
+              <summary>
+                Do you issue CAC certificates?
+                <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M6 9l6 6 6-6" stroke="rgba(15,28,46,0.85)" stroke-width="2.2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </summary>
+              <div class="faq-content">
+                No. CAC certificates and approvals are issued by the official institutions. We provide guidance and
+                support to help you complete the process properly.
+              </div>
+            </details>
+          </div>
+
+          <div class="faq-item">
+            <details>
+              <summary>
+                How do I get access after payment?
+                <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M6 9l6 6 6-6" stroke="rgba(15,28,46,0.85)" stroke-width="2.2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </summary>
+              <div class="faq-content">
+                After Paystack confirms your payment, you’ll see a success message and receive an access email (as
+                configured on your backend). This page includes a production-ready Paystack frontend example.
+              </div>
+            </details>
+          </div>
+
+          <div class="faq-item">
+            <details>
+              <summary>
+                What do I need before starting?
+                <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M6 9l6 6 6-6" stroke="rgba(15,28,46,0.85)" stroke-width="2.2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </summary>
+              <div class="faq-content">
+                A valid email, a reachable phone number, and your business details (names/choices). The course includes
+                a pre-checklist to keep you organized.
+              </div>
+            </details>
+          </div>
+
+          <div class="faq-item">
+            <details>
+              <summary>
+                Is this suitable for complete beginners?
+                <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M6 9l6 6 6-6" stroke="rgba(15,28,46,0.85)" stroke-width="2.2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </summary>
+              <div class="faq-content">
+                Yes. The steps are simplified, with explanations, screenshots guidance, and WhatsApp support to reduce
+                overwhelm.
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>CAC via SMEDAN Guide</h4>
+          <p>
+            A practical course to help Nigerian entrepreneurs navigate the SMEDAN-supported CAC registration pathway
+            with clarity and confidence.
+          </p>
+          <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="pill" href="#pricing"
+              style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.14); color: rgba(244,247,255,0.86); box-shadow:none;">
+              Promo: ₦5000
+            </a>
+            <a class="pill" href="#proof"
+              style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.14); color: rgba(244,247,255,0.86); box-shadow:none;">
+              Secure Paystack checkout
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h4>Contact</h4>
+          <p>Email: <a href="mailto:crowglogroup@gmail.com">crowglogroup@gmail.com</a></p>
+          <p style="margin-top:6px;">WhatsApp: <a href="https://wa.me/2348000000000" target="_blank" rel="noopener">+234
+              800 000 0000</a></p>
+          <p style="margin-top:6px;">Hours: Mon–Sat, 9am–6pm</p>
+        </div>
+
+        <div>
+          <h4>Disclaimer</h4>
+          <p>
+            This is an educational product and support service. We are not affiliated with CAC or SMEDAN, and we do not
+            guarantee program availability/approval. Official decisions and issuance remain with the respective
+            institutions.
+          </p>
+          <div class="footer-links" style="margin-top:12px;">
+            <a href="#faq">FAQ</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#top">Back to top</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© <span id="year"></span> CAC via SMEDAN Guide. All rights reserved.</span>
+        <span>Built for trust • Mobile-first • Secure checkout</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true">
+    <div class="ticon" aria-hidden="true">
+      <svg class="icon" viewBox="0 0 24 24" fill="none">
+        <path d="M20 6L9 17l-5-5" stroke="rgba(11,94,46,0.95)" stroke-width="2.4" stroke-linecap="round"
+          stroke-linejoin="round" />
+      </svg>
+    </div>
+    <div>
+      <strong id="toastTitle">Payment initialized</strong>
+      <p id="toastMsg">Complete the Paystack checkout to get access.</p>
+    </div>
+    <button class="close" type="button" id="toastClose" aria-label="Close notification">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M6 6l12 12M18 6L6 18" stroke="rgba(15,28,46,0.85)" stroke-width="2.2" stroke-linecap="round" />
+      </svg>
+    </button>
+  </div>
+
+  <script>
+    // ---------- Helpers ----------
+    const $ = (sel, root = document) => root.querySelector(sel);
+    const pad2 = n => String(n).padStart(2, '0');
+
+    function showToast(title, msg) {
+      const toast = $("#toast");
+      $("#toastTitle").textContent = title || "Notice";
+      $("#toastMsg").textContent = msg || "";
+      toast.classList.add("show");
+      window.clearTimeout(showToast._t);
+      showToast._t = window.setTimeout(() => toast.classList.remove("show"), 5200);
+    }
+    $("#toastClose").addEventListener("click", () => $("#toast").classList.remove("show"));
+
+    // ---------- Countdown Timer ----------
+    // Set promo end time: 24 hours from first visit (persisted per browser) for a realistic limited-time promo.
+    const PROMO_KEY = "promoEndsAt_v1";
+    function getPromoEnd() {
+      const saved = localStorage.getItem(PROMO_KEY);
+      if (saved) {
+        const t = Number(saved);
+        if (Number.isFinite(t) && t > Date.now() + 60_000) return t;
+      }
+      const end = Date.now() + 24 * 60 * 60 * 1000;
+      localStorage.setItem(PROMO_KEY, String(end));
+      return end;
+    }
+    const promoEndsAt = getPromoEnd();
+
+    function formatLocalEndsLabel(ts) {
+      try {
+        const d = new Date(ts);
+        const opts = { weekday: 'short', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+        return "Ends " + d.toLocaleString(undefined, opts);
+      } catch (e) {
+        return "Limited-time";
+      }
+    }
+    $("#promoEndsLabel").textContent = formatLocalEndsLabel(promoEndsAt);
+
+    function tick() {
+      const now = Date.now();
+      let diff = promoEndsAt - now;
+      if (diff < 0) diff = 0;
+
+      const sec = Math.floor(diff / 1000);
+      const days = Math.floor(sec / 86400);
+      const hours = Math.floor((sec % 86400) / 3600);
+      const mins = Math.floor((sec % 3600) / 60);
+      const secs = sec % 60;
+
+      $("#dd").textContent = pad2(days);
+      $("#hh").textContent = pad2(hours);
+      $("#mm").textContent = pad2(mins);
+      $("#ss").textContent = pad2(secs);
+
+      if (diff === 0) {
+        $("#promoEndsLabel").textContent = "Promo ended";
+      }
+    }
+    tick();
+    setInterval(tick, 1000);
+
+    // ---------- Paystack Integration (Frontend Example) ----------
+    // IMPORTANT: Replace PAYSTACK_PUBLIC_KEY and the callback/verification with your backend for production.
+    // For production readiness: you should verify the transaction on your server before granting access.
+    const PAYSTACK_PUBLIC_KEY = "pk_live_42a1191b8c074eab66c38cac26c3877970a0060a";
+    const COURSE_PRICE_NGN = 5000;
+    const COURSE_NAME = "CAC Registration via SMEDAN (FREE) — Step-by-step Course";
+
+    function safeRef() {
+      const s = "REF-" + Date.now() + "-" + Math.random().toString(16).slice(2, 10).toUpperCase();
+      return s;
+    }
+
+    function startPayment(prefill = {}) {
+      const email = (prefill.email || $("#email")?.value || "").trim();
+      const fullName = (prefill.fullName || $("#fullName")?.value || "").trim();
+      const phone = (prefill.phone || $("#phone")?.value || "").trim();
+
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showToast("Email required", "Please enter a valid email to receive your access link.");
+        $("#email")?.focus();
+        return;
+      }
+
+      const ref = safeRef();
+
+      showToast("Secure checkout", "Paystack will open. Complete payment to get your access link.");
+
+      const handler = PaystackPop.setup({
+        key: PAYSTACK_PUBLIC_KEY,
+        email: email,
+        amount: COURSE_PRICE_NGN * 100, // kobo
+        currency: "NGN",
+        ref: ref,
+        metadata: {
+          custom_fields: [
+            { display_name: "Full Name", variable_name: "full_name", value: fullName || "—" },
+            { display_name: "Phone", variable_name: "phone", value: phone || "—" },
+            { display_name: "Product", variable_name: "product", value: COURSE_NAME }
+          ]
+        },
+        callback: function (response) {
+          // Production note: verify on your server with Paystack verify endpoint before granting access.
+          // Example: POST /verify?reference=response.reference
+          showToast("Payment successful", "Reference: " + response.reference + ". Check your email for your access link (after verification).");
+
+          // Example redirect (replace with your real thank-you/access page):
+          // window.location.href = "/thank-you?ref=" + encodeURIComponent(response.reference);
+
+          // For demo, show a lightweight confirmation:
+          setTimeout(() => {
+            showToast("Next step", "We’ll email your access link shortly. If you need help, message WhatsApp support in the footer.");
+          }, 900);
+        },
+        onClose: function () {
+          showToast("Checkout closed", "You can resume anytime. The promo is still active while the countdown runs.");
+        }
+      });
+
+      try {
+        handler.openIframe();
+      } catch (err) {
+        showToast("Unable to open Paystack", "Please check your internet connection and try again.");
+        console.error(err);
+      }
+    }
+
+    // Bind CTAs
+    $("#payForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      startPayment();
+    });
+
+    ["#navPayBtn", "#heroPayBtn", "#proofPayBtn", "#pricingPayBtn"].forEach(id => {
+      const el = $(id);
+      if (el) el.addEventListener("click", () => startPayment());
+    });
+
+    // Footer year
+    $("#year").textContent = new Date().getFullYear();
+
+    // Smooth scrolling (lightweight)
+    document.addEventListener("click", (e) => {
+      const a = e.target.closest('a[href^="#"]');
+      if (!a) return;
+      const href = a.getAttribute("href");
+      if (!href || href.length < 2) return;
+      const target = document.querySelector(href);
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      history.replaceState(null, "", href);
+    });
+  </script>
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path d="M18 6L6 18M6 6l12 12" />
+      </svg>
+    </button>
+    <img id="lightboxImg" src="" alt="Preview">
+  </div>
+
+  <script>
+    function openLightbox(src) {
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightbox').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    // ... rest of scripts if any ...
+  </script>
+</body>
+
+</html>

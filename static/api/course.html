@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CAC Registration Guide (SMEDAN Method)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+
+    body {
+      background-color: #F8F9FA;
+      background-image: linear-gradient(135deg, rgba(11, 94, 46, 0.05) 0%, rgba(15, 28, 46, 0.05) 100%);
+    }
+
+    /* Better mobile scrolling + prevent horizontal overflow */
+    html, body { overflow-x: hidden; }
+    body { -webkit-text-size-adjust: 100%; }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    }
+
+    .gold-gradient { background: linear-gradient(135deg, #F4B400 0%, #F9A825 100%); }
+    .green-gradient { background: linear-gradient(135deg, #0B5E2E 0%, #1E8449 100%); }
+    .navy-gradient { background: linear-gradient(135deg, #009463 0%, #0b8b3c 100%); }
+
+    .progress-fill { transition: width 0.5s ease-in-out; }
+
+    .step-card { transition: all 0.3s ease; }
+    .step-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.2);
+    }
+
+    /* More reliable accordion animation on small devices */
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+      will-change: max-height;
+    }
+    .accordion-content.active {
+      max-height: 1800px;
+      transition: max-height 0.55s ease;
+    }
+
+    .check-animation { animation: checkmark 0.3s ease-in-out; }
+    @keyframes checkmark {
+      0% { transform: scale(0); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    .whatsapp-btn { transition: all 0.3s ease; }
+    .whatsapp-btn:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 20px rgba(244, 180, 0, 0.4);
+    }
+
+    /* Make long links wrap on small screens */
+    a, p, span { overflow-wrap: anywhere; word-break: break-word; }
+  </style>
+</head>
+
+<body>
+  <!-- Header Bar -->
+  <header class="navy-gradient text-white py-4 px-3 sm:px-6 shadow-lg">
+    <div class="max-w-6xl mx-auto flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-center">
+      <!-- Left: title + badge (wrap nicely on mobile) -->
+      <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 min-w-0">
+        <h1 class="text-lg sm:text-xl md:text-2xl font-bold leading-tight">
+          CAC Registration Guide (SMEDAN Method)
+        </h1>
+        <span class="inline-flex w-fit bg-yellow-400 text-[#0F1C2E] text-xs font-semibold px-2 py-1 rounded-full">
+          Member Access
+        </span>
+      </div>
+
+      <!-- Right: WhatsApp (full width on mobile) -->
+      <a href="https://wa.me/2348000000000" target="_blank"
+         class="whatsapp-btn gold-gradient text-white font-semibold px-4 py-3 rounded-lg flex items-center justify-center gap-2 w-full sm:w-auto">
+        <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413"/>
+        </svg>
+        <span class="whitespace-nowrap">WhatsApp Support</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-4xl mx-auto px-3 sm:px-4 py-6 sm:py-8">
+    <!-- Progress Indicator -->
+    <div class="glass-card rounded-xl p-4 sm:p-6 mb-6 sm:mb-8">
+      <div class="flex flex-col gap-2 sm:flex-row sm:justify-between sm:items-center mb-3">
+        <h2 class="text-base sm:text-lg font-semibold text-gray-800">Your Progress</h2>
+        <span id="progressText" class="text-sm font-medium text-gray-600">0% Complete</span>
+      </div>
+      <div class="w-full bg-gray-200 rounded-full h-3">
+        <div id="progressBar" class="progress-fill green-gradient h-3 rounded-full" style="width: 0%"></div>
+      </div>
+      <p class="text-sm text-gray-500 mt-2">Complete each step to track your progress</p>
+    </div>
+
+    <!-- Step template improvements:
+      - switch to flex-col on mobile so icon button doesn't squeeze content
+      - reduce padding on mobile
+      - prevent overflow with min-w-0
+    -->
+
+    <!-- Step 1 -->
+    <div class="glass-card step-card rounded-xl p-4 sm:p-6 mb-4 sm:mb-6">
+      <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+        <div class="flex items-start gap-3 min-w-0">
+          <div class="shrink-0 pt-0.5">
+            <input type="checkbox" id="step1"
+                   class="step-checkbox w-5 h-5 text-green-600 rounded focus:ring-green-500"
+                   onchange="updateProgress()">
+          </div>
+
+          <div class="min-w-0 flex-1">
+            <h3 class="text-base sm:text-lg font-semibold text-gray-800 mb-2">
+              Step 1: Understand the SMEDAN Opportunity
+            </h3>
+
+            <div class="accordion-content" id="step1Content">
+              <div class="mt-4 space-y-4">
+                <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+                  The Small and Medium Enterprises Development Agency of Nigeria (SMEDAN) has partnered with the
+                  Corporate Affairs Commission (CAC) to offer free business registration for eligible entrepreneurs.
+                </p>
+
+                <div class="bg-green-50 border-l-4 border-green-500 p-4 rounded">
+                  <h4 class="font-semibold text-green-800 mb-2">Important Notes:</h4>
+                  <ul class="text-sm text-green-700 space-y-1">
+                    <li>• This program covers the full CAC registration fee (normally ₦10,000+)</li>
+                    <li>• Limited to one business per individual</li>
+                    <li>• Must be a Nigerian citizen or legal resident</li>
+                  </ul>
+                </div>
+
+                <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded">
+                  <h4 class="font-semibold text-yellow-800 mb-2">Eligibility Reminders:</h4>
+                  <ul class="text-sm text-yellow-700 space-y-1">
+                    <li>• Business must be micro, small, or medium enterprise</li>
+                    <li>• Annual turnover not exceeding ₦100 million</li>
+                    <li>• Must not have previously registered with CAC</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button onclick="toggleAccordion('step1Content')" class="self-end sm:self-auto text-gray-400 hover:text-gray-600 focus:outline-none">
+          <svg class="w-5 h-5 transform transition-transform" id="step1Icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="glass-card step-card rounded-xl p-4 sm:p-6 mb-4 sm:mb-6">
+      <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+        <div class="flex items-start gap-3 min-w-0">
+          <div class="shrink-0 pt-0.5">
+            <input type="checkbox" id="step2"
+                   class="step-checkbox w-5 h-5 text-green-600 rounded focus:ring-green-500"
+                   onchange="updateProgress()">
+          </div>
+
+          <div class="min-w-0 flex-1">
+            <h3 class="text-base sm:text-lg font-semibold text-gray-800 mb-2">
+              Step 2: Prepare Required Information
+            </h3>
+
+            <div class="accordion-content" id="step2Content">
+              <div class="mt-4 space-y-4">
+                <div class="bg-blue-50 rounded-lg p-4">
+                  <h4 class="font-semibold text-blue-800 mb-3">Business Name Ideas (Prepare 3 options):</h4>
+
+                  <!-- Responsive: stack inputs on mobile, row on >=sm -->
+                  <div class="space-y-3">
+                    <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+                      <input type="text" placeholder="First choice"
+                             class="w-full sm:flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                      <span class="text-xs sm:text-sm text-gray-500">Available?</span>
+                    </div>
+                    <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+                      <input type="text" placeholder="Second choice"
+                             class="w-full sm:flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                      <span class="text-xs sm:text-sm text-gray-500">Available?</span>
+                    </div>
+                    <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+                      <input type="text" placeholder="Third choice"
+                             class="w-full sm:flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                      <span class="text-xs sm:text-sm text-gray-500">Available?</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="bg-gray-50 rounded-lg p-4">
+                  <h4 class="font-semibold text-gray-800 mb-3">Personal Details Needed:</h4>
+                  <ul class="space-y-2 text-sm text-gray-700">
+                    <li class="flex items-start">
+                      <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                      </svg>
+                      <span>Valid National ID Card (NIN, Voter's Card, or International Passport)</span>
+                    </li>
+                    <li class="flex items-start">
+                      <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                      </svg>
+                      <span>Active Email Address and Phone Number</span>
+                    </li>
+                    <li class="flex items-start">
+                      <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                      </svg>
+                      <span>Residential Address (with proof)</span>
+                    </li>
+                    <li class="flex items-start">
+                      <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                      </svg>
+                      <span>Business Description and Activities</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button onclick="toggleAccordion('step2Content')" class="self-end sm:self-auto text-gray-400 hover:text-gray-600 focus:outline-none">
+          <svg class="w-5 h-5 transform transition-transform" id="step2Icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="glass-card step-card rounded-xl p-4 sm:p-6 mb-4 sm:mb-6">
+      <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+        <div class="flex items-start gap-3 min-w-0">
+          <div class="shrink-0 pt-0.5">
+            <input type="checkbox" id="step3"
+                   class="step-checkbox w-5 h-5 text-green-600 rounded focus:ring-green-500"
+                   onchange="updateProgress()">
+          </div>
+
+          <div class="min-w-0 flex-1">
+            <h3 class="text-base sm:text-lg font-semibold text-gray-800 mb-2">
+              Step 3: Create SMEDAN Account
+            </h3>
+
+            <div class="accordion-content" id="step3Content">
+              <div class="mt-4 space-y-4">
+                <ol class="space-y-3 text-sm text-gray-700">
+                  <li class="flex items-start">
+                    <span class="shrink-0 w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-3">1</span>
+                    <span>Visit the official SMEDAN portal: <a href="#" class="text-green-600 hover:underline">smedan.gov.ng</a></span>
+                  </li>
+                  <li class="flex items-start">
+                    <span class="shrink-0 w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-3">2</span>
+                    <span>Click on "Register" or "Create Account" button</span>
+                  </li>
+                  <li class="flex items-start">
+                    <span class="shrink-0 w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-3">3</span>
+                    <span>Fill in your personal details accurately</span>
+                  </li>
+                  <li class="flex items-start">
+                    <span class="shrink-0 w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-3">4</span>
+                    <span>Verify your email address through the link sent to your inbox</span>
+                  </li>
+                  <li class="flex items-start">
+                    <span class="shrink-0 w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-3">5</span>
+                    <span>Complete your profile by uploading required documents
+                      FaiVicadeleke@25
+                    </span>
+                  </li>
+                </ol>
+
+                <div class="bg-gray-100 rounded-lg p-4 mt-4">
+                  <h4 class="font-semibold text-gray-800 mb-2">Screenshot Guide:</h4>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div class="bg-white border-2 border-dashed border-gray-300 rounded-lg h-32 flex items-center justify-center">
+                      <span class="text-gray-500 text-sm">Registration Page</span>
+                    </div>
+                    <div class="bg-white border-2 border-dashed border-gray-300 rounded-lg h-32 flex items-center justify-center">
+                      <span class="text-gray-500 text-sm">Profile Setup</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button onclick="toggleAccordion('step3Content')" class="self-end sm:self-auto text-gray-400 hover:text-gray-600 focus:outline-none">
+          <svg class="w-5 h-5 transform transition-transform" id="step3Icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="glass-card step-card rounded-xl p-4 sm:p-6 mb-4 sm:mb-6">
+      <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+        <div class="flex items-start gap-3 min-w-0">
+          <div class="shrink-0 pt-0.5">
+            <input type="checkbox" id="step4"
+                   class="step-checkbox w-5 h-5 text-green-600 rounded focus:ring-green-500"
+                   onchange="updateProgress()">
+          </div>
+
+          <div class="min-w-0 flex-1">
+            <h3 class="text-base sm:text-lg font-semibold text-gray-800 mb-2">
+              Step 4: Submit CAC Registration Through SMEDAN
+            </h3>
+
+            <div class="accordion-content" id="step4Content">
+              <div class="mt-4 space-y-4">
+                <ol class="space-y-3 text-sm text-gray-700">
+                  <li class="flex items-start">
+                    <span class="shrink-0 w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-3">1</span>
+                    <span>Log in to your SMEDAN account</span>
+                  </li>
+                  <li class="flex items-start">
+                    <span class="shrink-0 w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-3">2</span>
+                    <span>Navigate to "Services" &gt; "CAC Registration"</span>
+                  </li>
+                  <li class="flex items-start">
+                    <span class="shrink-0 w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-3">3</span>
+                    <span>Select "Business Name Registration" option</span>
+                  </li>
+                  <li class="flex items-start">
+                    <span class="shrink-0 w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-3">4</span>
+                    <span>Enter your preferred business names from Step 2</span>
+                  </li>
+                  <li class="flex items-start">
+                    <span class="shrink-0 w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-3">5</span>
+                    <span>Fill in all required business details</span>
+                  </li>
+                  <li class="flex items-start">
+                    <span class="shrink-0 w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-3">6</span>
+                    <span>Review all information carefully before submission</span>
+                  </li>
+                  <li class="flex items-start">
+                    <span class="shrink-0 w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-3">7</span>
+                    <span>Submit and note your application reference number</span>
+                  </li>
+                </ol>
+
+                <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded">
+                  <h4 class="font-semibold text-red-800 mb-2">⚠️ Important Warnings:</h4>
+                  <ul class="text-sm text-red-700 space-y-1">
+                    <li>• Double-check all information before submission - errors may require reapplication</li>
+                    <li>• Do not pay anyone for this free service</li>
+                    <li>• Save your application reference number safely</li>
+                  </ul>
+                </div>
+
+                <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded">
+                  <h4 class="font-semibold text-yellow-800 mb-2">Common Mistakes to Avoid:</h4>
+                  <ul class="text-sm text-yellow-700 space-y-1">
+                    <li>• Using restricted words in business name without approval</li>
+                    <li>• Providing incorrect personal details</li>
+                    <li>• Not checking business name availability first</li>
+                    <li>• Uploading unclear or invalid documents</li>
+                  </ul>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button onclick="toggleAccordion('step4Content')" class="self-end sm:self-auto text-gray-400 hover:text-gray-600 focus:outline-none">
+          <svg class="w-5 h-5 transform transition-transform" id="step4Icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Step 5 -->
+    <div class="glass-card step-card rounded-xl p-4 sm:p-6 mb-4 sm:mb-6">
+      <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+        <div class="flex items-start gap-3 min-w-0">
+          <div class="shrink-0 pt-0.5">
+            <input type="checkbox" id="step5"
+                   class="step-checkbox w-5 h-5 text-green-600 rounded focus:ring-green-500"
+                   onchange="updateProgress()">
+          </div>
+
+          <div class="min-w-0 flex-1">
+            <h3 class="text-base sm:text-lg font-semibold text-gray-800 mb-2">
+              Step 5: Track Approval & Download Certificate
+            </h3>
+
+            <div class="accordion-content" id="step5Content">
+              <div class="mt-4 space-y-4">
+
+                <div class="bg-blue-50 rounded-lg p-4">
+                  <h4 class="font-semibold text-blue-800 mb-3">How to Check Status:</h4>
+                  <ol class="space-y-2 text-sm text-blue-700">
+                    <li class="flex items-start">
+                      <span class="shrink-0 w-5 h-5 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-2 mt-0.5">1</span>
+                      <span>Log in to your SMEDAN account dashboard</span>
+                    </li>
+                    <li class="flex items-start">
+                      <span class="shrink-0 w-5 h-5 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-2 mt-0.5">2</span>
+                      <span>Go to "My Applications" section</span>
+                    </li>
+                    <li class="flex items-start">
+                      <span class="shrink-0 w-5 h-5 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-2 mt-0.5">3</span>
+                      <span>Find your CAC registration application</span>
+                    </li>
+                    <li class="flex items-start">
+                      <span class="shrink-0 w-5 h-5 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-2 mt-0.5">4</span>
+                      <span>Check the status (Pending, Approved, or Rejected)</span>
+                    </li>
+                  </ol>
+                </div>
+
+                <div class="bg-green-50 rounded-lg p-4">
+                  <h4 class="font-semibold text-green-800 mb-3">If Approved:</h4>
+                  <ul class="space-y-2 text-sm text-green-700">
+                    <li class="flex items-start">
+                      <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                      </svg>
+                      <span>Download your CAC registration certificate</span>
+                    </li>
+                    <li class="flex items-start">
+                      <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                      </svg>
+                      <span>Save multiple copies (digital and print)</span>
+                    </li>
+                    <li class="flex items-start">
+                      <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                      </svg>
+                      <span>Proceed with business operations</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="bg-orange-50 rounded-lg p-4">
+                  <h4 class="font-semibold text-orange-800 mb-3">If Delayed Beyond 2 Weeks:</h4>
+                  <ul class="space-y-2 text-sm text-orange-700">
+                    <li class="flex items-start">
+                      <svg class="w-5 h-5 text-orange-500 mr-2 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                      </svg>
+                      <span>Contact SMEDAN support through their portal</span>
+                    </li>
+                    <li class="flex items-start">
+                      <svg class="w-5 h-5 text-orange-500 mr-2 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                      </svg>
+                      <span>Visit nearest SMEDAN office with reference number</span>
+                    </li>
+                    <li class="flex items-start">
+                      <svg class="w-5 h-5 text-orange-500 mr-2 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                      </svg>
+                      <span>Reach out to our WhatsApp support for assistance</span>
+                    </li>
+                  </ul>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button onclick="toggleAccordion('step5Content')" class="self-end sm:self-auto text-gray-400 hover:text-gray-600 focus:outline-none">
+          <svg class="w-5 h-5 transform transition-transform" id="step5Icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Important Notes Section -->
+    <div class="glass-card rounded-xl p-4 sm:p-6 mb-6 sm:mb-8">
+      <h3 class="text-base sm:text-lg font-semibold text-gray-800 mb-4 flex items-center">
+        <svg class="w-6 h-6 text-yellow-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+        </svg>
+        Important Notes
+      </h3>
+      <div class="space-y-3 text-sm text-gray-700">
+        <p class="bg-yellow-50 p-4 rounded-lg">
+          <strong>Disclaimer:</strong> This is a comprehensive guide to help you navigate the SMEDAN-CAC free registration process. While we strive to provide accurate and up-to-date information, government processes may change.
+        </p>
+        <p class="bg-green-50 p-4 rounded-lg">
+          <strong>CAC Fees:</strong> All CAC registration fees are covered through the SMEDAN program for eligible applicants. You should not pay any fees for this service.
+        </p>
+        <p class="bg-blue-50 p-4 rounded-lg">
+          <strong>Not a Government Portal:</strong> This is a private educational platform providing guidance. For official government services, please visit the SMEDAN or CAC websites directly.
+        </p>
+      </div>
+    </div>
+
+    <!-- Support Section -->
+    <div class="glass-card rounded-xl p-4 sm:p-6 mb-6 sm:mb-8">
+      <h3 class="text-base sm:text-lg font-semibold text-gray-800 mb-4">Need Help?</h3>
+
+      <div class="flex flex-col sm:flex-row gap-4 mb-6">
+        <a href="https://wa.me/2348000000000" target="_blank"
+           class="whatsapp-btn gold-gradient text-white font-semibold px-6 py-3 rounded-lg flex items-center justify-center gap-2 w-full sm:w-auto">
+          <svg class="w-6 h-6 shrink-0" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413"/>
+          </svg>
+          <span class="text-center">Chat with Support on WhatsApp</span>
+        </a>
+      </div>
+
+      <!-- FAQ Dropdown -->
+      <div class="space-y-3">
+        <div class="border border-gray-200 rounded-lg">
+          <button onclick="toggleFAQ('faq1')"
+                  class="w-full px-4 py-3 text-left font-medium text-gray-800 hover:bg-gray-50 flex justify-between items-start gap-3">
+            <span class="min-w-0 flex-1">How long does the CAC registration process take?</span>
+            <svg id="faq1Icon" class="w-5 h-5 text-gray-500 transform transition-transform shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div id="faq1" class="accordion-content px-4 pb-3">
+            <p class="text-sm text-gray-600">
+              Typically, the CAC registration through SMEDAN takes 1-2 weeks for approval. However, processing times may vary depending on application volume and completeness of documentation.
+            </p>
+          </div>
+        </div>
+
+        <div class="border border-gray-200 rounded-lg">
+          <button onclick="toggleFAQ('faq2')"
+                  class="w-full px-4 py-3 text-left font-medium text-gray-800 hover:bg-gray-50 flex justify-between items-start gap-3">
+            <span class="min-w-0 flex-1">Can I register multiple businesses for free?</span>
+            <svg id="faq2Icon" class="w-5 h-5 text-gray-500 transform transition-transform shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div id="faq2" class="accordion-content px-4 pb-3">
+            <p class="text-sm text-gray-600">
+              No, the SMEDAN free registration program is limited to one business per individual to ensure more entrepreneurs can benefit from the initiative.
+            </p>
+          </div>
+        </div>
+
+        <div class="border border-gray-200 rounded-lg">
+          <button onclick="toggleFAQ('faq3')"
+                  class="w-full px-4 py-3 text-left font-medium text-gray-800 hover:bg-gray-50 flex justify-between items-start gap-3">
+            <span class="min-w-0 flex-1">What if my application is rejected?</span>
+            <svg id="faq3Icon" class="w-5 h-5 text-gray-500 transform transition-transform shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div id="faq3" class="accordion-content px-4 pb-3">
+            <p class="text-sm text-gray-600">
+              If your application is rejected, you'll receive a reason for the rejection. You can correct the issues and reapply. Contact our support team for assistance with reapplication.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Completion Section -->
+    <div id="completionSection" class="glass-card rounded-xl p-6 sm:p-8 text-center" style="display: none;">
+      <div class="max-w-md mx-auto">
+        <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg class="w-12 h-12 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+        </div>
+
+        <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-2">Congratulations!</h3>
+        <p class="text-gray-600 mb-6 text-sm sm:text-base leading-relaxed">
+          You've completed all the steps to register your business with CAC for free through SMEDAN. Your journey to official business ownership is well underway!
+        </p>
+
+        <div class="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-5 sm:p-6 mb-6 border border-white/60">
+          <h4 class="font-semibold text-gray-900 mb-2 text-base sm:text-lg">Need Professional Assistance?</h4>
+
+          <p class="text-sm sm:text-base text-gray-700 mb-4 leading-relaxed">
+            If you prefer to focus on your business while experts handle the registration, our Done-For-You service includes everything from document preparation to certificate delivery. We manage the process end-to-end with accuracy, speed, and clear communication.
+          </p>
+
+          <button class="gold-gradient text-white font-semibold px-6 py-3 rounded-lg hover:shadow-lg transition-shadow w-full sm:w-auto">
+            Let Us Handle It For You
+          </button>
+
+          <div class="mt-4 flex flex-wrap items-center justify-center gap-2 text-xs sm:text-sm font-medium text-gray-700">
+            <span class="px-3 py-1 rounded-full glass-card">100% Success Rate</span>
+            <span class="hidden sm:inline text-gray-400">|</span>
+            <span class="px-3 py-1 rounded-full glass-card">24/7 Support</span>
+            <span class="hidden sm:inline text-gray-400">|</span>
+            <span class="px-3 py-1 rounded-full glass-card">Certificate Delivery Included</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function toggleAccordion(contentId) {
+      const content = document.getElementById(contentId);
+      const icon = document.getElementById(contentId.replace('Content', 'Icon'));
+      content.classList.toggle('active');
+      icon.classList.toggle('rotate-180');
+    }
+
+    function toggleFAQ(faqId) {
+      const content = document.getElementById(faqId);
+      const icon = document.getElementById(faqId + 'Icon');
+      content.classList.toggle('active');
+      icon.classList.toggle('rotate-180');
+    }
+
+    function updateProgress() {
+      const checkboxes = document.querySelectorAll('.step-checkbox');
+      const checkedBoxes = document.querySelectorAll('.step-checkbox:checked');
+      const progressBar = document.getElementById('progressBar');
+      const progressText = document.getElementById('progressText');
+      const completionSection = document.getElementById('completionSection');
+
+      const totalSteps = checkboxes.length;
+      const completedSteps = checkedBoxes.length;
+      const percentage = Math.round((completedSteps / totalSteps) * 100);
+
+      progressBar.style.width = percentage + '%';
+      progressText.textContent = percentage + '% Complete';
+
+      if (completedSteps === totalSteps) {
+        completionSection.style.display = 'block';
+        completionSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+
+      checkedBoxes.forEach(checkbox => {
+        if (!checkbox.classList.contains('check-animation')) checkbox.classList.add('check-animation');
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      document.getElementById('step1Content').classList.add('active');
+      document.getElementById('step1Icon').classList.add('rotate-180');
+    });
+  </script>
+</body>
+</html>
