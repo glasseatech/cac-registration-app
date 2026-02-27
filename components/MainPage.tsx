@@ -510,14 +510,20 @@ export default function MainPage({ isPaid = false, user, cmsContent = {}, copy =
             <div className="proof-wrap grid md:grid-cols-2 gap-8 md:gap-4">
               <div className="testimonials" aria-label="Testimonials">
                 {getList(cmsContent.proof?.testimonials, [
-                  { name: "Amaka • Lagos", text: "I didn't know where to start. The checklist and screenshots made everything straightforward, and support replied fast.", quote: "Clear steps, no confusion.", stars: 5 },
-                  { name: "Mustapha • Abuja", text: "I avoided common mistakes that cause delays. The guide is structured like an official process.", quote: "Saved me time.", stars: 5 },
-                  { name: "Ifeoma • Enugu", text: "For ₦5000 promo it's a no-brainer. The updates also help because links and steps change.", quote: "Worth it even at ₦7500.", stars: 5 }
+                  { name: "Fulfilment • Lagos", text: "I didn't know where to start. The checklist and screenshots made everything straightforward, and support replied fast.", quote: "Clear steps, no confusion.", stars: 5, initial: "F" },
+                  { name: "Adeleke Favour • Osun", text: "I avoided common mistakes that cause delays. The guide is structured like an official process.", quote: "Saved me time.", stars: 5, initial: "AF", image: "/assets/Testifier-favour.png" },
+                  { name: "Faith • Ilesha", text: "For ₦5000 promo it's a no-brainer. The updates also help because links and steps change.", quote: "Worth it even at ₦7500.", stars: 5, initial: "F", image: "/assets/Testifier-faith.png" }
                 ]).map((t: any, i: number) => (
                   <div key={i} className="tcard">
                     <div className="tmeta">
                       <div className="who">
-                        <div className="avatar" aria-hidden="true">{t.name.charAt(0)}</div>
+                        <div className="avatar" aria-hidden="true" style={{ overflow: 'hidden' }}>
+                          {t.image ? (
+                            <img src={t.image} alt={t.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                          ) : (
+                            t.initial || t.name.charAt(0)
+                          )}
+                        </div>
                         <div>
                           <strong>{t.name}</strong>
                           <span>"{t.quote}"</span>
