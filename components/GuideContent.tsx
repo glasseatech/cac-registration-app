@@ -194,6 +194,25 @@ export default function GuideContent({ cmsContent = {}, modules = [], copy = {} 
                                         </div>
                                     ))}
                                 </div>
+
+                                {/* Next Module Button */}
+                                {modules.indexOf(activeModule) < modules.length - 1 && (
+                                    <div className="px-8 pb-8 md:px-16 md:pb-16 flex justify-end border-t border-gray-100 pt-8 mt-8">
+                                        <HeartButton
+                                            onClick={() => {
+                                                const nextModuleId = modules[modules.indexOf(activeModule) + 1].id;
+                                                setActiveModuleId(nextModuleId);
+                                                window.scrollTo({ top: 0, behavior: 'smooth' });
+                                            }}
+                                            className="px-8 py-4 bg-[#0B5E2E] hover:bg-[#084823] text-white rounded-2xl shadow-xl shadow-green-900/10 flex items-center transition-all hover:scale-105 active:scale-95"
+                                        >
+                                            <span className="font-bold">{c('guide.next_module', 'Next Module')}</span>
+                                            <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                            </svg>
+                                        </HeartButton>
+                                    </div>
+                                )}
                             </HeartCard>
                         </div>
                     ) : (
